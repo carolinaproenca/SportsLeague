@@ -30,7 +30,7 @@ class SeasonViewModel/*(repository: SeasonsRepository)*/ : ViewModel() {
         viewModelScope.launch {
             try {
                 val seasonsResponse = retrofitSeasons.getProperties(league_id = league_id)
-                seasons = season.getSeason(listOf(seasonsResponse)) as MutableList<SeasonProp>
+                seasons = season.getSeason(seasonsResponse.data) as MutableList<SeasonProp>
                 _responseSeasons.value = SeasonsResp(seasons)
             } catch (e: Exception) {
                 smsError.value = "Failure+$e"

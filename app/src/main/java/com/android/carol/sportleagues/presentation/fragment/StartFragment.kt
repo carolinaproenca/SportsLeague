@@ -54,12 +54,12 @@ class StartFragment : Fragment() {
             countryid2 = item.countryid2
             leagueid1 = item.leagueid1
             leagueid2 = item.leagueid2*/
-            for (i in item.league.indices) {
+           // for (i in item.league.indices) {
                 countryid1 = item.league[0].countryid1
-                countryid2 = item.league[1].countryid2
+                countryid2 = item.league[1].countryid1
                 leagueid1 = item.league[0].leagueid1
-                leagueid2 = item.league[1].leagueid2
-            }
+                leagueid2 = item.league[1].leagueid1
+            //}
         }
     }
 }

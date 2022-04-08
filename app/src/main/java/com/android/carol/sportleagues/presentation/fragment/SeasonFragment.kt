@@ -63,12 +63,12 @@ class SeasonFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         model.responseSeasons.observe(this) { item ->
-            for (i in item.seasons.indices) {
+           // for (i in item.seasons.indices) {
                 season1 = item.seasons[0].seasonId
                 season2 = item.seasons[1].seasonId
                 season3 = item.seasons[2].seasonId
                 seasonNow = item.seasons[3].seasonId
-            }
+          //  }
         }
     }
 }

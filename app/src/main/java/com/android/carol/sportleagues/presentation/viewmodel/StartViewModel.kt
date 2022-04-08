@@ -29,7 +29,7 @@ class StartViewModel/*(repository: LeagueIdRepository)*/ : ViewModel() {
         viewModelScope.launch {
             try{
                 val leagueResponse = retrofit.getProperties(subscribed = true)
-                leagues = league.getLeague(listOf(leagueResponse)) as MutableList<LeagueProp>
+                leagues = league.getLeague(leagueResponse.data) as MutableList<LeagueProp>
                 _response.value = LeagueResp(leagues)
 
                 /*_response.value = LeagueProp(leagueResponse.data[0].leagueId,leagueResponse.data[0].countryId,

@@ -26,13 +26,14 @@ class TeamsViewModel/*(repository: TeamsRepository)*/ : ViewModel(){
     fun getTeamsProperties(){
         viewModelScope.launch {
             try{
-                val teamsResponse = retrofitTeams.getProperties(country_id = country_id)
-                teams = team.getTeam(listOf(teamsResponse)) as MutableList<TeamsProp>
+                val teamsResponse = retrofitTeams.getProperties(country_id = 98)
+                teams = team.getTeam(teamsResponse.data) as MutableList<TeamsProp>
                 _responseTeams.value = TeamsResp(teams)
             }catch (e: Exception){
                 smsError.value = "Failure+$e"
             }
         }
     }
+
 
 }

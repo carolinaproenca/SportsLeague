@@ -9,12 +9,12 @@ class GetTeamsUseCase /*constructor(private val repository: TeamsRepository)*/ {
    // suspend fun getProp() = repository.getProp()
 
     private val teams = mutableListOf<TeamsProp>()
-    private val arrayTeams = arrayListOf<Teams>()
+    private val arrayTeams = arrayListOf<Data>()
 
-    fun getTeam(team: List<Teams>) : List<TeamsProp>{
+    fun getTeam(team: List<Data>) : List<TeamsProp>{
         for(i in team.indices){
             arrayTeams.add(team[i])
-            teams.add(TeamsProp(team[i].data[i].logo, team[i].data[i].name))
+            teams.add(TeamsProp(team[i].logo, team[i].name))
         }
         return teams
     }

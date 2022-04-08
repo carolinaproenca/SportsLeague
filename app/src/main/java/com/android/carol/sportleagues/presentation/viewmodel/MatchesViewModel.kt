@@ -30,7 +30,7 @@ class MatchesViewModel/*(repository: MatchesRepository)*/ : ViewModel() {
         viewModelScope.launch {
             try{
                 val matchResponse = retrofit.getProperties(season_id = season_id)
-                matches = match.getMatch(listOf(matchResponse)) as MutableList<MatchesProp>
+                matches = match.getMatch(matchResponse.data) as MutableList<MatchesProp>
                 _response.value = MatchesResp(matches)
 
             }catch (e: Exception){
