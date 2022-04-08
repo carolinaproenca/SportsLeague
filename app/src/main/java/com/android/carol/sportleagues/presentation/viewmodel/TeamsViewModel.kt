@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.android.carol.sportleagues.common.country_id
 import com.android.carol.sportleagues.data.remote.TeamsAPI
 import com.android.carol.sportleagues.data.remote.dtoTeams.TeamsResp
 import com.android.carol.sportleagues.domain.model.TeamsProp
@@ -21,11 +22,10 @@ class TeamsViewModel/*(repository: TeamsRepository)*/ : ViewModel(){
     private var teams = mutableListOf<TeamsProp>()
     private val smsError = MutableLiveData<String>()
 
-    @Suppress("UNCHECKED_CAST")
     fun getTeamsProperties(){
         viewModelScope.launch {
             try{
-                val teamsResponse = retrofitTeams.getProperties(country_id = 98)
+                val teamsResponse = retrofitTeams.getProperties(country_id = country_id)
                 teams = team.getTeam(teamsResponse.data) as MutableList<TeamsProp>
                 _responseTeams.value = TeamsResp(teams)
             }catch (e: Exception){

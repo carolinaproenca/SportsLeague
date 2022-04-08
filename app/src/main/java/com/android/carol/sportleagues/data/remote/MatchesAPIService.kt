@@ -22,9 +22,9 @@ private val retrofitMatches = Retrofit.Builder()
     .build()
 
 interface MatchesAPIService {
-    @GET("teams")
+    @GET("matches")
     suspend fun getProperties(
-        @Query("apikey") key:String = API, @Query("season_id") season_id : Int
+        @Query("apikey") key : String = API, @Query("season_id") season_id : Int
     ): Matches
 }
 

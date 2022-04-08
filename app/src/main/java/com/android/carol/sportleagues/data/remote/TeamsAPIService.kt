@@ -22,7 +22,7 @@ private val retrofitTeams = Retrofit.Builder()
     .build()
 
 interface TeamsAPIService {
-    @GET("matches")
+    @GET("teams")
     suspend fun getProperties(
         @Query("apikey") key : String = API, @Query("country_id") country_id :Int
     ): Teams
