@@ -8,9 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.android.carol.sportleagues.R
-import com.android.carol.sportleagues.SportApplication
-import com.android.carol.sportleagues.SportSeasonContainer
-import com.android.carol.sportleagues.common.Constants
 import com.android.carol.sportleagues.common.season_id
 import com.android.carol.sportleagues.databinding.SeasonFragmentBinding
 import com.android.carol.sportleagues.presentation.viewmodel.SeasonViewModel

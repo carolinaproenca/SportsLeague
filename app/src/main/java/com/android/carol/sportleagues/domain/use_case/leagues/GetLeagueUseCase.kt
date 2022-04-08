@@ -1,11 +1,7 @@
 package com.android.carol.sportleagues.domain.use_case.leagues
 
 import com.android.carol.sportleagues.data.remote.dtoLeagueId.Data
-import com.android.carol.sportleagues.data.remote.dtoLeagueId.LeagueId
-import com.android.carol.sportleagues.data.remote.dtoTeams.Teams
 import com.android.carol.sportleagues.domain.model.LeagueProp
-import com.android.carol.sportleagues.domain.repositories.DLeagueIdRepository
-
 
 class GetLeagueUseCase /*constructor(private val repository: DLeagueIdRepository)*/{
 
@@ -20,6 +16,7 @@ class GetLeagueUseCase /*constructor(private val repository: DLeagueIdRepository
             leagues.add(
                 LeagueProp(league[i].leagueId,league[i].countryId,
                     league[i].name)
+
               /*  LeagueProp(league[i].data[i].leagueId,league[i].data[i].countryId,
                     league[i].data[i].name,league[i+1].data[i+1].leagueId,league[i+1].data[i+1].countryId,
                     league[i+1].data[i+1].name)*/

@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.carol.sportleagues.databinding.ItemViewTeamsBinding
 import com.android.carol.sportleagues.domain.model.TeamsProp
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.item_view_matches.view.*
 
 class TeamsAdapter : ListAdapter<TeamsProp, RecyclerView.ViewHolder>(DiffCallback()) {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

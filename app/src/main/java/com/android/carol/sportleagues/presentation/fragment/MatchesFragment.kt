@@ -8,12 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.android.carol.sportleagues.R
-import com.android.carol.sportleagues.SportApplication
-import com.android.carol.sportleagues.SportMatchesContainer
 import com.android.carol.sportleagues.databinding.MatchesFragmentBinding
 import com.android.carol.sportleagues.presentation.adapters.MatchesAdapter
 import com.android.carol.sportleagues.presentation.viewmodel.MatchesViewModel
-import com.android.carol.sportleagues.presentation.viewmodel.StartViewModel
 
 class MatchesFragment : Fragment() {
     private lateinit var binding : MatchesFragmentBinding

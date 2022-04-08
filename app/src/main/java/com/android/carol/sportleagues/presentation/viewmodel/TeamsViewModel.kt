@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.android.carol.sportleagues.common.country_id
 import com.android.carol.sportleagues.data.remote.TeamsAPI
 import com.android.carol.sportleagues.data.remote.dtoTeams.TeamsResp
 import com.android.carol.sportleagues.domain.model.TeamsProp

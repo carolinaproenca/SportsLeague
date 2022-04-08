@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.android.carol.sportleagues.common.season_id
 import com.android.carol.sportleagues.data.remote.MatchesAPI
 import com.android.carol.sportleagues.data.remote.dtoMatches.MatchesResp
-import com.android.carol.sportleagues.data.repositories.MatchesRepository
 import com.android.carol.sportleagues.domain.model.MatchesProp
 import com.android.carol.sportleagues.domain.use_case.matches.GetMatchUseCase
 import kotlinx.coroutines.launch
@@ -24,7 +23,7 @@ class MatchesViewModel/*(repository: MatchesRepository)*/ : ViewModel() {
     private var match = GetMatchUseCase()
     private var matches = mutableListOf<MatchesProp>()
 
-    val smsError = MutableLiveData<String>()
+    private val smsError = MutableLiveData<String>()
 
     fun getMatchesProperties(){
         viewModelScope.launch {

@@ -1,7 +1,6 @@
 package com.android.carol.sportleagues.domain.use_case.teams
 
 import com.android.carol.sportleagues.data.remote.dtoTeams.Data
-import com.android.carol.sportleagues.data.remote.dtoTeams.Teams
 import com.android.carol.sportleagues.domain.model.TeamsProp
 
 class GetTeamsUseCase /*constructor(private val repository: TeamsRepository)*/ {
