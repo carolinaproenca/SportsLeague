@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/startFragment">
+
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="com.android.carol.sportleagues.presentation.fragment.StartFragment"
+        android:label="StartFragment"
+        tools:layout="@layout/start_fragment">
+        <action
+            android:id="@+id/action_startFragment_to_teamsFragment"
+            app:destination="@id/teamsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/teamsFragment"
+        android:name="com.android.carol.sportleagues.presentation.fragment.TeamsFragment"
+        android:label="TeamsFragment"
+        tools:layout="@layout/teams_fragment" >
+        <action
+            android:id="@+id/action_teamsFragment_to_seasonFragment"
+            app:destination="@id/seasonFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/matchesFragment"
+        android:name="com.android.carol.sportleagues.presentation.fragment.MatchesFragment"
+        android:label="MatchesFragment"
+        tools:layout="@layout/matches_fragment" >
+        <action
+            android:id="@+id/action_matchesFragment_self"
+            app:destination="@id/matchesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/seasonFragment"
+        android:name="com.android.carol.sportleagues.presentation.fragment.SeasonFragment"
+        android:label="SeasonFragment"
+        tools:layout="@layout/season_fragment" >
+        <action
+            android:id="@+id/action_seasonFragment_to_matchesFragment"
+            app:destination="@id/matchesFragment" />
+    </fragment>
+</navigation>

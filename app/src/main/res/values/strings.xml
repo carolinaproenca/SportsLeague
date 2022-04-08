@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">SportLeagues</string>
+    <string name="LigaPT">Primeira Liga</string>
+    <string name="LaLiga">La Liga</string>
+    <string name="season1">Games 20/21</string>
+    <string name="season2">Games 19/20</string>
+    <string name="season3">Games 18/19</string>
+    <string name="seasonNow">Games 21/22</string>
+    <string name="teams">Teams</string>
+    <string name="games">Resume Games</string>
+    <string name="x">X</string>
+    <string name="numberGoalsFirstTeam">1</string>
+    <string name="numberGoalsSecondTeam">2</string>
+    <string name="goals">Goals</string>
+    <string name="team1">Team1</string>
+    <string name="team2">Team2</string>
+    <string name="Game">Game Details:</string>
+    <string name="NextGames">Page Seasons</string>
+</resources>

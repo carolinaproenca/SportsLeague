@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/ligapt">
+            </ImageView>
+            <Button
+                android:id="@+id/button_primeiraliga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/LigaPT"
+                android:layout_gravity="center">
+            </Button>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/laliga">
+            </ImageView>
+            <Button
+                android:id="@+id/button_laliga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/LaLiga"
+                android:layout_gravity="center">
+            </Button>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
