@@ -16,9 +16,6 @@ class GetMatchUseCase /*constructor(private val repository: DMatchesRepository)*
             matches.add(MatchesProp(match[i].homeTeam.name,match[i].awayTeam.name, match[i].homeTeam.logo,
             match[i].awayTeam.logo, match[i].stats.homeScore, match[i].stats.awayScore))
 
-            /*MatchesProp(match[i].data[i].homeTeam.name,match[i].data[i].awayTeam.name,
-                match[i].data[i].homeTeam.logo, match[i].data[i].awayTeam.logo,
-                match[i].data[i].stats.homeScore, match[i].data[i].stats.awayScore)*/
         }
         return matches
     }

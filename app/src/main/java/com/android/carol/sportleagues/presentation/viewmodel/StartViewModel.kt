@@ -31,9 +31,6 @@ class StartViewModel/*(repository: LeagueIdRepository)*/ : ViewModel() {
                 leagues = league.getLeague(leagueResponse.data) as MutableList<LeagueProp>
                 _response.value = LeagueResp(leagues)
 
-                /*_response.value = LeagueProp(leagueResponse.data[0].leagueId,leagueResponse.data[0].countryId,
-                    leagueResponse.data[0].name,leagueResponse.data[1].leagueId,leagueResponse.data[1].countryId,
-                    leagueResponse.data[1].name)*/
             }catch (e: Exception){
                 smsError.value = "Failure+$e"
             }

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:padding="12dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
@@ -10,7 +11,7 @@
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:layout_margin="20dp"
-        android:src="@drawable/ligapt"
+
         tools:ignore="MissingConstraints" />
 
     <TextView

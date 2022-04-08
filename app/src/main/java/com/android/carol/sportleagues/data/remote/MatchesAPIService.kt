@@ -12,6 +12,7 @@ import retrofit2.http.Query
 
 //https://app.sportdataapi.com/api/v1/soccer/matches?apikey=74915aa0-b43a-11ec-b80b-bd2ed61fcd18&season_id=762
 
+
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()

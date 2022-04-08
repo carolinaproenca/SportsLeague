@@ -18,7 +18,7 @@
             <ImageView
                 android:layout_width="400dp"
                 android:layout_height="400dp"
-                android:src="@drawable/ligapt">
+                >
             </ImageView>
             <Button
                 android:id="@+id/button_primeiraliga"
@@ -38,7 +38,7 @@
             <ImageView
                 android:layout_width="400dp"
                 android:layout_height="400dp"
-                android:src="@drawable/laliga">
+                >
             </ImageView>
             <Button
                 android:id="@+id/button_laliga"

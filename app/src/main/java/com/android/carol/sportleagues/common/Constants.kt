@@ -5,6 +5,7 @@ object Constants {
     const val URL: String = "https://app.sportdataapi.com/api/v1/soccer/"
 
 }
+
 var country_id : Int = 0
 var league_id : Int = 0
 var season_id : Int = 0

@@ -30,13 +30,16 @@ class MatchesAdapter : ListAdapter<MatchesProp, RecyclerView.ViewHolder>(DiffCal
 
             val urlTeamHome = item.logo_team_home
             val image = binding.team1Logo
+
             Glide.with(image)
                 .load(urlTeamHome)
                 .into(image)
 
             val urlTeamAway = item.logo_team_away
             val imageAway = binding.team2Logo
-            Glide.with(imageAway).load(urlTeamAway).into(imageAway)
+            Glide.with(imageAway)
+                .load(urlTeamAway)
+                .into(imageAway)
         }
         companion object{
             fun from(parent: ViewGroup) : MyviewHolder {

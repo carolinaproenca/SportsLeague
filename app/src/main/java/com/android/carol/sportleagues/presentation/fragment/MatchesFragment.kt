@@ -9,6 +9,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.android.carol.sportleagues.R
 import com.android.carol.sportleagues.databinding.MatchesFragmentBinding
+import com.android.carol.sportleagues.domain.model.MatchesProp
+import com.android.carol.sportleagues.domain.use_case.matches.GetMatchUseCase
 import com.android.carol.sportleagues.presentation.adapters.MatchesAdapter
 import com.android.carol.sportleagues.presentation.viewmodel.MatchesViewModel
 
@@ -16,6 +18,9 @@ class MatchesFragment : Fragment() {
     private lateinit var binding : MatchesFragmentBinding
     private lateinit var model : MatchesViewModel
     private val adapter by lazy{ MatchesAdapter() }
+
+    private var match = GetMatchUseCase()
+    private var matches = mutableListOf<MatchesProp>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,4 +65,5 @@ class MatchesFragment : Fragment() {
             adapter.submitList(item.matches)
         }
     }
+
 }
