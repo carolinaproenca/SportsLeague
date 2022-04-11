@@ -5,5 +5,5 @@ import com.android.carol.sportleagues.domain.use_case.teams.GetTeamsUseCase
 
 class SportTeamsContainer(repository: TeamsRepository) {
 
-    //val teamsUseCase = GetTeamsUseCase(repository)
+    val teamsUseCase = GetTeamsUseCase(repository)
 }

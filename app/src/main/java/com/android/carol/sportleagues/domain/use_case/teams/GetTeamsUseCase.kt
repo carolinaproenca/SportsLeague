@@ -1,11 +1,12 @@
 package com.android.carol.sportleagues.domain.use_case.teams
 
 import com.android.carol.sportleagues.data.remote.dtoTeams.Data
+import com.android.carol.sportleagues.data.repositories.TeamsRepository
 import com.android.carol.sportleagues.domain.model.TeamsProp
 
-class GetTeamsUseCase /*constructor(private val repository: TeamsRepository)*/ {
+class GetTeamsUseCase constructor(private val repository: TeamsRepository) {
 
-   // suspend fun getProp() = repository.getProp()
+    suspend fun getProp() = repository.getProp()
 
     private val teams = mutableListOf<TeamsProp>()
     private val arrayTeams = arrayListOf<Data>()

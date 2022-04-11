@@ -18,24 +18,30 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:layout_editor_absoluteX="134dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/x"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/team1_logo"
                 android:layout_width="160dp"
                 android:layout_height="160dp"
-                 />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/team1_name"
@@ -43,9 +49,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/team1"
-                android:textSize="40dp"
                 android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="@+id/team1_logo"
+                android:textSize="40dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/team1_logo" />
 
@@ -54,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="@string/goals"
-                android:textSize="35dp"
+                android:textSize="40dp"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toTopOf="@+id/numberGoalsFirstTeam"
                 app:layout_constraintStart_toEndOf="@+id/team1_logo"
@@ -65,8 +71,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="@string/numberGoalsFirstTeam"
-                android:textSize="40dp"
                 android:textColor="@color/black"
+                android:textSize="40dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.505"
@@ -81,11 +87,11 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/x"
-            android:textColor="@color/black"
             android:textSize="35dp"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
-            app:layout_constraintStart_toEndOf="@+id/constraintLayout1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -93,24 +99,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/x"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/team2_logo"
                 android:layout_width="160dp"
                 android:layout_height="160dp"
-                app:layout_constraintStart_toEndOf="@+id/Goals2" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/team2_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/team2"
                 android:textSize="40dp"
+                android:text="@string/team2"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/team2_logo"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/team2_logo" />
 
             <TextView
@@ -118,9 +128,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="@string/goals"
-                android:textSize="35dp"
+                android:textSize="40dp"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toTopOf="@+id/numberGoalsSecondTeam"
+                app:layout_constraintEnd_toStartOf="@+id/team2_logo"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -128,11 +139,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="@string/numberGoalsSecondTeam"
-                android:textSize="40dp"
                 android:textColor="@color/black"
+                android:textSize="40dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/Goals2"
-                app:layout_constraintStart_toStartOf="@+id/Goals2"
+                app:layout_constraintEnd_toStartOf="@+id/team2_logo"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

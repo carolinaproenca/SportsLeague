@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.android.carol.sportleagues.R
+import com.android.carol.sportleagues.*
 import com.android.carol.sportleagues.common.country_id
 import com.android.carol.sportleagues.common.league_id
 import com.android.carol.sportleagues.databinding.StartFragmentBinding
+import com.android.carol.sportleagues.presentation.viewmodel.MatchesViewModel
 import com.android.carol.sportleagues.presentation.viewmodel.StartViewModel
 
 class StartFragment : Fragment() {
@@ -22,6 +23,8 @@ class StartFragment : Fragment() {
     private var countryid2 : Int = 0
     private var leagueid2 : Int = 0
 
+    private lateinit var appContainer: AppContainer
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,7 +32,10 @@ class StartFragment : Fragment() {
     ): View {
         binding = StartFragmentBinding.inflate(inflater, container, false)
 
-        model = ViewModelProvider(this).get(StartViewModel::class.java)
+        appContainer = (activity?.application as SportApplication).appContainer
+        appContainer.sportLeagueContainer = SportLeagueContainer(appContainer.repositoryLeague)
+
+        model = StartViewModel(appContainer.repositoryLeague)
 
         model.getLeagueProperties()
 

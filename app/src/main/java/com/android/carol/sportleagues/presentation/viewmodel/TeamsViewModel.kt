@@ -7,18 +7,19 @@ import androidx.lifecycle.viewModelScope
 import com.android.carol.sportleagues.common.country_id
 import com.android.carol.sportleagues.data.remote.TeamsAPI
 import com.android.carol.sportleagues.data.remote.dtoTeams.TeamsResp
+import com.android.carol.sportleagues.data.repositories.TeamsRepository
 import com.android.carol.sportleagues.domain.model.TeamsProp
 import com.android.carol.sportleagues.domain.use_case.teams.GetTeamsUseCase
 import kotlinx.coroutines.launch
 
-class TeamsViewModel/*(repository: TeamsRepository)*/ : ViewModel(){
+class TeamsViewModel(repository: TeamsRepository) : ViewModel(){
 
     private val retrofitTeams = TeamsAPI.retrofitServiceTeams
     private val _responseTeams= MutableLiveData<TeamsResp>()
     val responseTeams: LiveData<TeamsResp>
         get() = _responseTeams
 
-    private var team = GetTeamsUseCase()
+    private var team = GetTeamsUseCase(repository)
     private var teams = mutableListOf<TeamsProp>()
     private val smsError = MutableLiveData<String>()
 

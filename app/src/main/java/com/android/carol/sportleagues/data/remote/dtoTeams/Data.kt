@@ -5,7 +5,7 @@ import com.squareup.moshi.Json
 
 data class Data(
     @Json(name = "common_name")
-    val commonName: String,
+    val commonName: String?,
     @Json(name = "country")
     val country: Country,
     @Json(name = "logo")

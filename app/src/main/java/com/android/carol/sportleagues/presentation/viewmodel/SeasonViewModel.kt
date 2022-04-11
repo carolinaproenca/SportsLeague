@@ -7,16 +7,17 @@ import androidx.lifecycle.viewModelScope
 import com.android.carol.sportleagues.common.league_id
 import com.android.carol.sportleagues.data.remote.SeasonsAPI
 import com.android.carol.sportleagues.data.remote.dtoSeasons.SeasonsResp
+import com.android.carol.sportleagues.data.repositories.SeasonsRepository
 import com.android.carol.sportleagues.domain.model.SeasonProp
 import com.android.carol.sportleagues.domain.use_case.season.GetSeasonUseCase
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class SeasonViewModel/*(repository: SeasonsRepository)*/ : ViewModel() {
+class SeasonViewModel(repository: SeasonsRepository) : ViewModel() {
 
     private val retrofitSeasons = SeasonsAPI.retrofitServiceSeason
 
-    private var season = GetSeasonUseCase()
+    private var season = GetSeasonUseCase(repository)
     private var seasons = mutableListOf<SeasonProp>()
     private val smsError = MutableLiveData<String>()
 

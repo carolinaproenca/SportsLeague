@@ -7,7 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.android.carol.sportleagues.AppContainer
 import com.android.carol.sportleagues.R
+import com.android.carol.sportleagues.SportApplication
+import com.android.carol.sportleagues.SportMatchesContainer
 import com.android.carol.sportleagues.databinding.MatchesFragmentBinding
 import com.android.carol.sportleagues.presentation.adapters.MatchesAdapter
 import com.android.carol.sportleagues.presentation.viewmodel.MatchesViewModel
@@ -17,6 +20,7 @@ class MatchesFragment : Fragment() {
     private lateinit var model : MatchesViewModel
     private val adapter by lazy{ MatchesAdapter() }
 
+    private lateinit var appContainer: AppContainer
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,12 +30,10 @@ class MatchesFragment : Fragment() {
 
         binding = MatchesFragmentBinding.inflate(inflater, container, false)
 
-        model = ViewModelProvider(this).get(MatchesViewModel::class.java)
-
-        /*appContainer = (activity?.application as SportApplication).appContainer
+        appContainer = (activity?.application as SportApplication).appContainer
         appContainer.sportMacthesContainer = SportMatchesContainer(appContainer.repositoryMatch)
 
-        model = MatchesViewModel(appContainer.repositoryMatch)*/
+        model = MatchesViewModel(appContainer.repositoryMatch)
 
         binding.resumeMatches.adapter = adapter
 

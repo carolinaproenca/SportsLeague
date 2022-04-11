@@ -7,7 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.android.carol.sportleagues.AppContainer
 import com.android.carol.sportleagues.R
+import com.android.carol.sportleagues.SportApplication
+import com.android.carol.sportleagues.SportTeamsContainer
 import com.android.carol.sportleagues.databinding.TeamsFragmentBinding
 import com.android.carol.sportleagues.presentation.adapters.TeamsAdapter
 import com.android.carol.sportleagues.presentation.viewmodel.TeamsViewModel
@@ -16,17 +19,20 @@ class TeamsFragment : Fragment() {
     private lateinit var binding: TeamsFragmentBinding
     private lateinit var model : TeamsViewModel
     private val adapter by lazy{ TeamsAdapter() }
-    //private lateinit var appContainer: AppContainer
+
+    private lateinit var appContainer: AppContainer
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = TeamsFragmentBinding.inflate(inflater, container, false)
-        model = ViewModelProvider(this).get(TeamsViewModel::class.java)
-        /*appContainer = (activity?.application as SportApplication).appContainer
+
+        appContainer = (activity?.application as SportApplication).appContainer
         appContainer.sportTeamsContainer = SportTeamsContainer(appContainer.repositoryTeams)
-        model = TeamsViewModel(appContainer.repositoryTeams)*/
+
+        model = TeamsViewModel(appContainer.repositoryTeams)
 
         binding.teams.adapter = adapter
 

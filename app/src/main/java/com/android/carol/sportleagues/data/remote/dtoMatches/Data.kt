@@ -7,7 +7,7 @@ data class Data(
     @Json(name = "away_team")
     val awayTeam: AwayTeam,
     @Json(name = "group")
-    val group: Group,
+    val group: Group?,
     @Json(name = "home_team")
     val homeTeam: HomeTeam,
     @Json(name = "league_id")
@@ -19,9 +19,9 @@ data class Data(
     @Json(name = "match_start_iso")
     val matchStartIso: String,
     @Json(name = "minute")
-    val minute: Any,
+    val minute: Any?,
     @Json(name = "referee_id")
-    val refereeId: Int,
+    val refereeId: Int?,
     @Json(name = "round")
     val round: Round,
     @Json(name = "season_id")

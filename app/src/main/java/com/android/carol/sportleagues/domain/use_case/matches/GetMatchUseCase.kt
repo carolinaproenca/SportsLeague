@@ -2,10 +2,11 @@ package com.android.carol.sportleagues.domain.use_case.matches
 
 import com.android.carol.sportleagues.data.remote.dtoMatches.Data
 import com.android.carol.sportleagues.domain.model.MatchesProp
+import com.android.carol.sportleagues.domain.repositories.DMatchesRepository
 
-class GetMatchUseCase /*constructor(private val repository: DMatchesRepository)*/{
+class GetMatchUseCase constructor(private val repository: DMatchesRepository){
 
-//    suspend fun getProp() = repository.getProp()
+    suspend fun getProp() = repository.getProp()
 
     private val matches = mutableListOf<MatchesProp>()
     private val arrayMatches = arrayListOf<Data>()
