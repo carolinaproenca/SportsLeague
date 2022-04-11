@@ -7,6 +7,7 @@
         <entry key="..\:/Users/carol/Estagio/SportLeagues/app/src/main/res/drawable/ic_launcher_background.xml" value="0.19114583333333332" />
         <entry key="..\:/Users/carol/Estagio/SportLeagues/app/src/main/res/layout-sw600dp/activity_main.xml" value="0.13524590163934427" />
         <entry key="..\:/Users/carol/Estagio/SportLeagues/app/src/main/res/layout-sw600dp/item_view_matches.xml" value="0.13524590163934427" />
+        <entry key="..\:/Users/carol/Estagio/SportLeagues/app/src/main/res/layout-sw600dp/item_view_season.xml" value="0.18818306010928962" />
         <entry key="..\:/Users/carol/Estagio/SportLeagues/app/src/main/res/layout-sw600dp/item_view_teams.xml" value="0.13524590163934427" />
         <entry key="..\:/Users/carol/Estagio/SportLeagues/app/src/main/res/layout-sw600dp/matches_fragment.xml" value="0.13524590163934427" />
         <entry key="..\:/Users/carol/Estagio/SportLeagues/app/src/main/res/layout-sw600dp/season_fragment.xml" value="0.1837431693989071" />
@@ -14,6 +15,7 @@
         <entry key="..\:/Users/carol/Estagio/SportLeagues/app/src/main/res/layout-sw600dp/teams_fragment.xml" value="0.13524590163934427" />
         <entry key="..\:/Users/carol/Estagio/SportLeagues/app/src/main/res/layout/activity_main.xml" value="0.11676798378926039" />
         <entry key="..\:/Users/carol/Estagio/SportLeagues/app/src/main/res/layout/item_view_matches.xml" value="0.264" />
+        <entry key="..\:/Users/carol/Estagio/SportLeagues/app/src/main/res/layout/item_view_season.xml" value="0.24954710144927536" />
         <entry key="..\:/Users/carol/Estagio/SportLeagues/app/src/main/res/layout/item_view_teams.xml" value="0.144" />
         <entry key="..\:/Users/carol/Estagio/SportLeagues/app/src/main/res/layout/matches_fragment.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/carol/Estagio/SportLeagues/app/src/main/res/layout/season.xml" value="0.24365942028985507" />

@@ -5,18 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.android.carol.sportleagues.AppContainer
 import com.android.carol.sportleagues.R
 import com.android.carol.sportleagues.SportApplication
 import com.android.carol.sportleagues.SportMatchesContainer
-import com.android.carol.sportleagues.data.remote.dtoMatches.Matches
 import com.android.carol.sportleagues.databinding.MatchesFragmentBinding
 import com.android.carol.sportleagues.domain.model.MatchesProp
 import com.android.carol.sportleagues.domain.use_case.matches.GetMatchUseCase
 import com.android.carol.sportleagues.presentation.adapters.MatchesAdapter
 import com.android.carol.sportleagues.presentation.viewmodel.MatchesViewModel
+import kotlinx.android.synthetic.main.item_view_season.*
 
 class MatchesFragment : Fragment() {
     private lateinit var binding : MatchesFragmentBinding
@@ -25,8 +24,6 @@ class MatchesFragment : Fragment() {
 
     private lateinit var appContainer: AppContainer
 
-    private var match = GetMatchUseCase(appContainer.repositoryMatch)
-    private var matches = mutableListOf<MatchesProp>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,26 +42,13 @@ class MatchesFragment : Fragment() {
 
         model.getMatchesProperties()
 
-        binding.buttonSeasonNow.setOnClickListener {
-            this.findNavController().navigate(R.id.action_matchesFragment_self)
-        }
-        binding.buttonSeason1.setOnClickListener {
-            this.findNavController().navigate(R.id.action_matchesFragment_self)
-        }
-
-        binding.buttonSeason2.setOnClickListener {
-            this.findNavController().navigate(R.id.action_matchesFragment_self)
-        }
-
-        binding.buttonSeason3.setOnClickListener {
-            this.findNavController().navigate(R.id.action_matchesFragment_self)
-        }
-
         return binding.root
     }
 
     override fun onStart() {
         super.onStart()
+        val match = GetMatchUseCase(appContainer.repositoryMatch)
+        var matches = mutableListOf<MatchesProp>()
         model.response.observe(this){item ->
             matches = match.getMatch(item.data) as MutableList<MatchesProp>
             adapter.submitList(matches)

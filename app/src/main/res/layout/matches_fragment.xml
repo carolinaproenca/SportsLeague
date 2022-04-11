@@ -4,71 +4,26 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-    <LinearLayout
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center">
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_gravity="center"
+        android:gravity="center">
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/seasons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
-            <Button
-                android:id="@+id/button_seasonNow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/seasonNow"
-                android:textColor="@color/black"
-                android:backgroundTint="@color/white">
-            </Button>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-            <Button
-                android:id="@+id/button_season1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/season1"
-                android:textColor="@color/black"
-                android:backgroundTint="@color/white">
-            </Button>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-            <Button
-                android:id="@+id/button_season2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/season2"
-                android:textColor="@color/black"
-                android:backgroundTint="@color/white">
-            </Button>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1">
-            <Button
-                android:id="@+id/button_season3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/season3"
-                android:textColor="@color/black"
-                android:backgroundTint="@color/white">
-            </Button>
-        </LinearLayout>
-    </LinearLayout>
+            android:orientation="horizontal"
+            android:padding="12dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:layout_width="match_parent"

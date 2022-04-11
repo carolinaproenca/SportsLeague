@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.android.carol.sportleagues.AppContainer
 import com.android.carol.sportleagues.R
@@ -23,8 +22,7 @@ class TeamsFragment : Fragment() {
     private val adapter by lazy{ TeamsAdapter() }
 
     private lateinit var appContainer: AppContainer
-    private var team = GetTeamsUseCase(appContainer.repositoryTeams)
-    private var teams = mutableListOf<TeamsProp>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,6 +47,8 @@ class TeamsFragment : Fragment() {
     }
     override fun onStart() {
         super.onStart()
+        val team = GetTeamsUseCase(appContainer.repositoryTeams)
+        var teams = mutableListOf<TeamsProp>()
         model.responseTeams.observe(this){ item ->
             teams = team.getTeam(item.data) as MutableList<TeamsProp>
             adapter.submitList(teams)
