@@ -6,7 +6,7 @@ import com.android.carol.sportleagues.domain.repositories.DLeagueIdRepository
 
 class GetLeagueUseCase constructor(private val repository: DLeagueIdRepository){
 
-    suspend fun getProp() = repository.getProp()
+    suspend fun getProp(subscribed : Boolean) = repository.getProp(subscribed)
 
     private val leagues = mutableListOf<LeagueProp>()
     private val arrayLeagues = arrayListOf<Data>()

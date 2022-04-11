@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.carol.sportleagues.common.season_id
 import com.android.carol.sportleagues.data.remote.MatchesAPI
+import com.android.carol.sportleagues.data.remote.dtoMatches.Matches
 import com.android.carol.sportleagues.data.remote.dtoMatches.MatchesResp
 import com.android.carol.sportleagues.data.repositories.MatchesRepository
 import com.android.carol.sportleagues.domain.model.MatchesProp
@@ -15,10 +16,10 @@ import java.lang.Exception
 
 class MatchesViewModel(repository: MatchesRepository) : ViewModel() {
 
-    private val retrofit = MatchesAPI.retrofitServiceMatch
+   // private val retrofit = MatchesAPI.retrofitServiceMatch
 
-    private val _response= MutableLiveData<MatchesResp>()
-    val response: LiveData<MatchesResp>
+    private val _response= MutableLiveData<Matches>()
+    val response: LiveData<Matches>
         get() = _response
 
     private var match = GetMatchUseCase(repository)
@@ -29,9 +30,10 @@ class MatchesViewModel(repository: MatchesRepository) : ViewModel() {
     fun getMatchesProperties(){
         viewModelScope.launch {
             try{
-                val matchResponse = retrofit.getProperties(season_id = season_id)
-                matches = match.getMatch(matchResponse.data) as MutableList<MatchesProp>
-                _response.value = MatchesResp(matches)
+                _response.value = match.getProp(season_id)
+               // val matchResponse = retrofit.getProperties(season_id = season_id)
+                //matches = match.getMatch(matchResponse.data) as MutableList<MatchesProp>
+                //_response.value = MatchesResp(matches)
 
             }catch (e: Exception){
                 smsError.value = "Failure+$e"

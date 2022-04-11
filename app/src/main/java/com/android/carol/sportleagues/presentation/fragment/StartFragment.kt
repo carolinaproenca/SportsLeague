@@ -11,6 +11,8 @@ import com.android.carol.sportleagues.*
 import com.android.carol.sportleagues.common.country_id
 import com.android.carol.sportleagues.common.league_id
 import com.android.carol.sportleagues.databinding.StartFragmentBinding
+import com.android.carol.sportleagues.domain.model.LeagueProp
+import com.android.carol.sportleagues.domain.use_case.leagues.GetLeagueUseCase
 import com.android.carol.sportleagues.presentation.viewmodel.MatchesViewModel
 import com.android.carol.sportleagues.presentation.viewmodel.StartViewModel
 
@@ -24,6 +26,9 @@ class StartFragment : Fragment() {
     private var leagueid2 : Int = 0
 
     private lateinit var appContainer: AppContainer
+
+    private var league = GetLeagueUseCase(appContainer.repositoryLeague)
+    private var leagues = mutableListOf<LeagueProp>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,12 +61,11 @@ class StartFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         model.response.observe(this){ item ->
-           // for (i in item.league.indices) {
-                countryid1 = item.league[0].countryid
-                countryid2 = item.league[1].countryid
-                leagueid1 = item.league[0].leagueid
-                leagueid2 = item.league[1].leagueid
-            //}
+            leagues = league.getLeague(item.data) as MutableList<LeagueProp>
+            countryid1 = leagues[0].countryid
+            countryid2 = leagues[1].countryid
+            leagueid1 = leagues[0].leagueid
+            leagueid2 = leagues[1].leagueid
         }
     }
 }

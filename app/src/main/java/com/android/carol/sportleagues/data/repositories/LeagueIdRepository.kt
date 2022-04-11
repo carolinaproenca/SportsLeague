@@ -6,7 +6,7 @@ import com.android.carol.sportleagues.domain.repositories.DLeagueIdRepository
 
 class LeagueIdRepository constructor(private val leagueIdAPIService: LeagueIdAPIService) : DLeagueIdRepository {
 
-    override suspend fun getProp() : LeagueId{
-        return leagueIdAPIService.getProperties(subscribed = true)
+    override suspend fun getProp(subscribed: Boolean): LeagueId {
+        return leagueIdAPIService.getProperties(subscribed = subscribed)
     }
 }

@@ -6,7 +6,7 @@ import com.android.carol.sportleagues.domain.model.TeamsProp
 
 class GetTeamsUseCase constructor(private val repository: TeamsRepository) {
 
-    suspend fun getProp() = repository.getProp()
+    suspend fun getProp(country_id : Int) = repository.getProp(country_id)
 
     private val teams = mutableListOf<TeamsProp>()
     private val arrayTeams = arrayListOf<Data>()

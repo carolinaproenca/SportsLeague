@@ -13,6 +13,8 @@ import com.android.carol.sportleagues.SportApplication
 import com.android.carol.sportleagues.SportSeasonContainer
 import com.android.carol.sportleagues.common.season_id
 import com.android.carol.sportleagues.databinding.SeasonFragmentBinding
+import com.android.carol.sportleagues.domain.model.SeasonProp
+import com.android.carol.sportleagues.domain.use_case.season.GetSeasonUseCase
 import com.android.carol.sportleagues.presentation.viewmodel.SeasonViewModel
 
 class SeasonFragment : Fragment() {
@@ -25,6 +27,9 @@ class SeasonFragment : Fragment() {
     private var season3 : Int = 0
 
     private lateinit var appContainer: AppContainer
+
+    private var season = GetSeasonUseCase(appContainer.repositorySeason)
+    private var seasons = mutableListOf<SeasonProp>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -63,12 +68,13 @@ class SeasonFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         model.responseSeasons.observe(this) { item ->
-           // for (i in item.seasons.indices) {
-                season1 = item.seasons[0].seasonId
-                season2 = item.seasons[1].seasonId
-                season3 = item.seasons[2].seasonId
-                seasonNow = item.seasons[3].seasonId
-          //  }
+            seasons = season.getSeason(item.data) as MutableList<SeasonProp>
+
+            season1 = seasons[0].seasonId
+            season2 = seasons[1].seasonId
+            season3 = seasons[2].seasonId
+            seasonNow = seasons[3].seasonId
+
         }
     }
 }

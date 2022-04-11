@@ -12,6 +12,8 @@ import com.android.carol.sportleagues.R
 import com.android.carol.sportleagues.SportApplication
 import com.android.carol.sportleagues.SportTeamsContainer
 import com.android.carol.sportleagues.databinding.TeamsFragmentBinding
+import com.android.carol.sportleagues.domain.model.TeamsProp
+import com.android.carol.sportleagues.domain.use_case.teams.GetTeamsUseCase
 import com.android.carol.sportleagues.presentation.adapters.TeamsAdapter
 import com.android.carol.sportleagues.presentation.viewmodel.TeamsViewModel
 
@@ -21,6 +23,8 @@ class TeamsFragment : Fragment() {
     private val adapter by lazy{ TeamsAdapter() }
 
     private lateinit var appContainer: AppContainer
+    private var team = GetTeamsUseCase(appContainer.repositoryTeams)
+    private var teams = mutableListOf<TeamsProp>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,7 +50,8 @@ class TeamsFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         model.responseTeams.observe(this){ item ->
-            adapter.submitList(item.teams)
+            teams = team.getTeam(item.data) as MutableList<TeamsProp>
+            adapter.submitList(teams)
         }
     }
 }

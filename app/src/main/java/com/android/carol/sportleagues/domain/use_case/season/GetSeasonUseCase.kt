@@ -6,7 +6,7 @@ import com.android.carol.sportleagues.domain.repositories.DSeasonsRepository
 
 class GetSeasonUseCase constructor(private val repository: DSeasonsRepository) {
 
-    suspend fun getProp() = repository.getProp()
+    suspend fun getProp(league_id : Int) = repository.getProp(league_id)
 
     private val seasons = mutableListOf<SeasonProp>()
     private val arraySeason = arrayListOf<Data>()

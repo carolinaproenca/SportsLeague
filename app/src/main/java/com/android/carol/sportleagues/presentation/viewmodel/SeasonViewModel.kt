@@ -5,7 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.carol.sportleagues.common.league_id
+import com.android.carol.sportleagues.common.season_id
 import com.android.carol.sportleagues.data.remote.SeasonsAPI
+import com.android.carol.sportleagues.data.remote.dtoSeasons.Seasons
 import com.android.carol.sportleagues.data.remote.dtoSeasons.SeasonsResp
 import com.android.carol.sportleagues.data.repositories.SeasonsRepository
 import com.android.carol.sportleagues.domain.model.SeasonProp
@@ -21,16 +23,17 @@ class SeasonViewModel(repository: SeasonsRepository) : ViewModel() {
     private var seasons = mutableListOf<SeasonProp>()
     private val smsError = MutableLiveData<String>()
 
-    private val _responseSeasons= MutableLiveData<SeasonsResp>()
-    val responseSeasons: LiveData<SeasonsResp>
+    private val _responseSeasons= MutableLiveData<Seasons>()
+    val responseSeasons: LiveData<Seasons>
         get() = _responseSeasons
 
     fun getSeasonProperties() {
         viewModelScope.launch {
             try {
-                val seasonsResponse = retrofitSeasons.getProperties(league_id = league_id)
+                _responseSeasons.value = season.getProp(league_id)
+               /* val seasonsResponse = retrofitSeasons.getProperties(league_id = league_id)
                 seasons = season.getSeason(seasonsResponse.data) as MutableList<SeasonProp>
-                _responseSeasons.value = SeasonsResp(seasons)
+                _responseSeasons.value = SeasonsResp(seasons)*/
             } catch (e: Exception) {
                 smsError.value = "Failure+$e"
             }

@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.carol.sportleagues.data.remote.LeagueIdApi
+import com.android.carol.sportleagues.data.remote.dtoLeagueId.LeagueId
 import com.android.carol.sportleagues.data.remote.dtoLeagueId.LeagueResp
 import com.android.carol.sportleagues.data.repositories.LeagueIdRepository
 import com.android.carol.sportleagues.domain.model.LeagueProp
@@ -16,8 +17,8 @@ class StartViewModel(repository: LeagueIdRepository) : ViewModel() {
 
     private val retrofit = LeagueIdApi.retrofitServiceLeague
 
-    private val _response= MutableLiveData<LeagueResp>()
-    val response: LiveData<LeagueResp>
+    private val _response= MutableLiveData<LeagueId>()
+    val response: LiveData<LeagueId>
         get() = _response
 
     private var league = GetLeagueUseCase(repository)
@@ -28,9 +29,10 @@ class StartViewModel(repository: LeagueIdRepository) : ViewModel() {
     fun getLeagueProperties(){
         viewModelScope.launch {
             try{
-                val leagueResponse = retrofit.getProperties(subscribed = true)
+                _response.value = league.getProp(true)
+                /*val leagueResponse = retrofit.getProperties(subscribed = true)
                 leagues = league.getLeague(leagueResponse.data) as MutableList<LeagueProp>
-                _response.value = LeagueResp(leagues)
+                _response.value = LeagueResp(leagues)*/
 
             }catch (e: Exception){
                 smsError.value = "Failure+$e"

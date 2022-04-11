@@ -6,7 +6,7 @@ import com.android.carol.sportleagues.domain.repositories.DMatchesRepository
 
 class GetMatchUseCase constructor(private val repository: DMatchesRepository){
 
-    suspend fun getProp() = repository.getProp()
+    suspend fun getProp(season_id : Int) = repository.getProp(season_id)
 
     private val matches = mutableListOf<MatchesProp>()
     private val arrayMatches = arrayListOf<Data>()

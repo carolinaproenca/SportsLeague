@@ -11,7 +11,10 @@ import com.android.carol.sportleagues.AppContainer
 import com.android.carol.sportleagues.R
 import com.android.carol.sportleagues.SportApplication
 import com.android.carol.sportleagues.SportMatchesContainer
+import com.android.carol.sportleagues.data.remote.dtoMatches.Matches
 import com.android.carol.sportleagues.databinding.MatchesFragmentBinding
+import com.android.carol.sportleagues.domain.model.MatchesProp
+import com.android.carol.sportleagues.domain.use_case.matches.GetMatchUseCase
 import com.android.carol.sportleagues.presentation.adapters.MatchesAdapter
 import com.android.carol.sportleagues.presentation.viewmodel.MatchesViewModel
 
@@ -21,6 +24,9 @@ class MatchesFragment : Fragment() {
     private val adapter by lazy{ MatchesAdapter() }
 
     private lateinit var appContainer: AppContainer
+
+    private var match = GetMatchUseCase(appContainer.repositoryMatch)
+    private var matches = mutableListOf<MatchesProp>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,7 +66,8 @@ class MatchesFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         model.response.observe(this){item ->
-            adapter.submitList(item.matches)
+            matches = match.getMatch(item.data) as MutableList<MatchesProp>
+            adapter.submitList(matches)
         }
     }
 
