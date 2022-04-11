@@ -35,6 +35,7 @@ class StartFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         binding = StartFragmentBinding.inflate(inflater, container, false)
 
         appContainer = (activity?.application as SportApplication).appContainer
