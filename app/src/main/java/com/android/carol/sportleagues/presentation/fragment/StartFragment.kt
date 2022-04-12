@@ -34,7 +34,6 @@ class StartFragment : Fragment() {
         binding = StartFragmentBinding.inflate(inflater, container, false)
 
         appContainer = (activity?.application as SportApplication).appContainer
-        appContainer.sportLeagueContainer = SportLeagueContainer(appContainer.repositoryLeague)
 
         model = StartViewModel(appContainer.repositoryLeague)
 

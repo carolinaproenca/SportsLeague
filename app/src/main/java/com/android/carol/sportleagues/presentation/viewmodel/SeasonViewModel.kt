@@ -4,17 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.android.carol.sportleagues.SportSeasonContainer
 import com.android.carol.sportleagues.common.league_id
 import com.android.carol.sportleagues.data.remote.dtoSeasons.Seasons
-import com.android.carol.sportleagues.data.repositories.SeasonsRepository
+import com.android.carol.sportleagues.domain.repositories.DSeasonsRepository
+import com.android.carol.sportleagues.domain.use_case.season.GetSeasonUseCase
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class SeasonViewModel(repository: SeasonsRepository) : ViewModel() {
+class SeasonViewModel(repository: DSeasonsRepository) : ViewModel() {
 
-
-    private var getSeasonUseCase: SportSeasonContainer = SportSeasonContainer(repository)
+    private val getSeasonUseCase = GetSeasonUseCase(repository)
 
     private val smsError = MutableLiveData<String>()
 
@@ -25,7 +24,7 @@ class SeasonViewModel(repository: SeasonsRepository) : ViewModel() {
     fun getSeasonProperties() {
         viewModelScope.launch {
             try {
-                _responseSeasons.value = getSeasonUseCase.seasonUseCase.getProp(league_id)
+                _responseSeasons.value = getSeasonUseCase.getProp(league_id)
 
             } catch (e: Exception) {
                 smsError.value = "Failure+$e"

@@ -16,9 +16,4 @@ class AppContainer {
     val repositorySeason = SeasonsRepository(retrofitServiceSeason)
     val repositoryTeams = TeamsRepository(retrofitServiceTeams)
 
-    var sportLeagueContainer : SportLeagueContainer ?=null
-    var sportMacthesContainer : SportMatchesContainer ?=null
-    var sportSeasonContainer : SportSeasonContainer ?=null
-    var sportTeamsContainer : SportTeamsContainer ?=null
-
 }

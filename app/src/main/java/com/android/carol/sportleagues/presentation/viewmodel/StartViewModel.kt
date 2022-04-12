@@ -4,15 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.android.carol.sportleagues.SportLeagueContainer
 import com.android.carol.sportleagues.data.remote.dtoLeagueId.LeagueId
-import com.android.carol.sportleagues.data.repositories.LeagueIdRepository
+import com.android.carol.sportleagues.domain.repositories.DLeagueIdRepository
+import com.android.carol.sportleagues.domain.use_case.leagues.GetLeagueUseCase
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class StartViewModel(repository: LeagueIdRepository) : ViewModel() {
+class StartViewModel(repository: DLeagueIdRepository) : ViewModel() {
 
-    private var getLeagueUseCase: SportLeagueContainer = SportLeagueContainer(repository)
+    private val getLeagueUseCase = GetLeagueUseCase(repository)
 
     private val _response= MutableLiveData<LeagueId>()
     val response: LiveData<LeagueId>
@@ -23,7 +23,7 @@ class StartViewModel(repository: LeagueIdRepository) : ViewModel() {
     fun getLeagueProperties(){
         viewModelScope.launch {
             try{
-                _response.value = getLeagueUseCase.getLeagueUseCase.getProp(true)
+                _response.value = getLeagueUseCase.getProp(true)
 
             }catch (e: Exception){
                 smsError.value = "Failure+$e"
