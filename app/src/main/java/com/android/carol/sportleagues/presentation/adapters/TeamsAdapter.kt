@@ -6,10 +6,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.android.carol.sportleagues.databinding.ItemViewTeamsBinding
-import com.android.carol.sportleagues.domain.model.TeamsProp
+import com.android.carol.sportleagues.domain.model.Teams
 import com.bumptech.glide.Glide
 
-class TeamsAdapter : ListAdapter<TeamsProp, RecyclerView.ViewHolder>(DiffCallback()) {
+class TeamsAdapter : ListAdapter<Teams, RecyclerView.ViewHolder>(DiffCallback()) {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = getItem(position)
         (holder as MyviewHolder).bind(item)
@@ -20,7 +20,7 @@ class TeamsAdapter : ListAdapter<TeamsProp, RecyclerView.ViewHolder>(DiffCallbac
     }
 
     class MyviewHolder private constructor(private val binding : ItemViewTeamsBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(item : TeamsProp){
+        fun bind(item : Teams){
             binding.teamName.text = item.name
 
             val url = item.logo
@@ -37,12 +37,12 @@ class TeamsAdapter : ListAdapter<TeamsProp, RecyclerView.ViewHolder>(DiffCallbac
         }
     }
 
-    class DiffCallback : DiffUtil.ItemCallback<TeamsProp>(){
-        override fun areItemsTheSame(oldItem: TeamsProp, newItem: TeamsProp): Boolean {
+    class DiffCallback : DiffUtil.ItemCallback<Teams>(){
+        override fun areItemsTheSame(oldItem: Teams, newItem: Teams): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: TeamsProp, newItem: TeamsProp): Boolean {
+        override fun areContentsTheSame(oldItem: Teams, newItem: Teams): Boolean {
             return oldItem == newItem
         }
     }

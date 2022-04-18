@@ -9,9 +9,10 @@ import androidx.navigation.fragment.findNavController
 import com.android.carol.sportleagues.*
 import com.android.carol.sportleagues.common.country_id
 import com.android.carol.sportleagues.common.league_id
+import com.android.carol.sportleagues.data.remote.dtoLeagueId.Data
 import com.android.carol.sportleagues.databinding.StartFragmentBinding
-import com.android.carol.sportleagues.domain.model.LeagueProp
-import com.android.carol.sportleagues.domain.use_case.leagues.GetLeagueUseCase
+import com.android.carol.sportleagues.domain.model.League
+import com.android.carol.sportleagues.domain.use_case.leagues.GetLeague
 import com.android.carol.sportleagues.presentation.viewmodel.StartViewModel
 
 class StartFragment : Fragment() {
@@ -24,6 +25,9 @@ class StartFragment : Fragment() {
     private var leagueid2 : Int = 0
 
     private lateinit var appContainer: AppContainer
+    private lateinit var getLeague : InterfaceGetLeague
+    //private val getLeague = List<GetLeague>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,8 +50,8 @@ class StartFragment : Fragment() {
         }
 
         binding.buttonLaliga.setOnClickListener {
-            country_id = countryid2
-            league_id = leagueid2
+            country_id = countryid1
+            league_id = leagueid1
             this.findNavController().navigate(R.id.action_startFragment_to_teamsFragment)
         }
         return binding.root
@@ -55,14 +59,33 @@ class StartFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        val league = GetLeagueUseCase(appContainer.repositoryLeague)
-        var leagues = mutableListOf<LeagueProp>()
+        //val league = GetLeagueUseCase(appContainer.repositoryLeague)
+      //  val data = mutableListOf<Data>()
+       // var leagues = mutableListOf<League>()
+        getLeague = InterfaceGetLeague()
         model.response.observe(this){ item ->
-            leagues = league.getLeague(item.data) as MutableList<LeagueProp>
+            countryid1 = item.countryid
+            leagueid1  = item.leagueid
+            /*leagues = getLeague.getLeague(data) as MutableList<League>
+                //league.getLeague(item.data) as MutableList<League>
             countryid1 = leagues[0].countryid
             countryid2 = leagues[1].countryid
             leagueid1 = leagues[0].leagueid
-            leagueid2 = leagues[1].leagueid
+            leagueid2 = leagues[1].leagueid*/
         }
+    }
+}
+
+class InterfaceGetLeague : GetLeague{
+    val data = ArrayList<Data>()
+    var league = mutableListOf<League>()
+
+    override val leagues: MutableList<League>
+        get() = league
+    override val arrayLeagues: ArrayList<Data>
+        get() = data
+
+    override fun getLeague(league: List<Data>): List<League> {
+        return leagues
     }
 }

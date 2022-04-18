@@ -1,7 +1,7 @@
 package com.android.carol.sportleagues.data.remote.dtoMatches
 
-import com.android.carol.sportleagues.domain.model.MatchesProp
+import com.android.carol.sportleagues.domain.model.Matches
 
 data class MatchesResp (
-    val matches : List<MatchesProp>
+    val matches : List<Matches>
     )

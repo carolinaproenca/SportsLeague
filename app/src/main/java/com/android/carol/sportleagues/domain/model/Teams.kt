@@ -1,6 +1,6 @@
 package com.android.carol.sportleagues.domain.model
 
-data class TeamsProp (
+data class Teams (
     val logo: String,
     val name: String
     )

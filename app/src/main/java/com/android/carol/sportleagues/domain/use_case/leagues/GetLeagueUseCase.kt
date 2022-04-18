@@ -1,24 +1,55 @@
 package com.android.carol.sportleagues.domain.use_case.leagues
 
 import com.android.carol.sportleagues.data.remote.dtoLeagueId.Data
-import com.android.carol.sportleagues.domain.model.LeagueProp
-import com.android.carol.sportleagues.domain.repositories.DLeagueIdRepository
+import com.android.carol.sportleagues.domain.model.League
 
-class GetLeagueUseCase constructor(private val repository: DLeagueIdRepository){
+import com.android.carol.sportleagues.domain.repositories.LeagueRepository
 
-    suspend fun getProp(subscribed : Boolean) = repository.getProp(subscribed)
+class GetLeagueUseCase constructor(private val repository: LeagueRepository){
 
-    private val leagues = mutableListOf<LeagueProp>()
-    private val arrayLeagues = arrayListOf<Data>()
+    suspend fun getLeagueById(id : Int) = repository.getLeagueById(id)
 
-    fun getLeague(league : List<Data>) : List<LeagueProp>{
-        for(i in league.indices){
+}
+
+interface GetLeague{
+
+    val leagues: MutableList<League>
+    val arrayLeagues: ArrayList<Data>
+
+    fun getLeague(league: List<Data>): List<League> {
+        for (i in league.indices) {
             arrayLeagues.add(league[i])
             leagues.add(
-                LeagueProp(league[i].leagueId,league[i].countryId,
-                    league[i].name)
+                League(
+                    league[i].leagueId, league[i].countryId,
+                    league[i].name
+                )
             )
         }
         return leagues
     }
+
+  /*  val leagues: MutableList<League>
+    val arrayLeagues: ArrayList<Data>
+
+    companion object : GetLeague {
+
+        override val leagues: MutableList<League>
+            get() = leagues
+        override val arrayLeagues: ArrayList<Data>
+            get() = arrayLeagues
+
+        fun getLeague(league: List<Data>): List<League> {
+            for (i in league.indices) {
+                arrayLeagues.add(league[i])
+                leagues.add(
+                    League(
+                        league[i].leagueId, league[i].countryId,
+                        league[i].name
+                    )
+                )
+            }
+            return leagues
+        }
+    }*/
 }

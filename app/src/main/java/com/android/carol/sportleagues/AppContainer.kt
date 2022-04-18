@@ -4,16 +4,16 @@ import com.android.carol.sportleagues.data.remote.LeagueIdApi.retrofitServiceLea
 import com.android.carol.sportleagues.data.remote.MatchesAPI.retrofitServiceMatch
 import com.android.carol.sportleagues.data.remote.SeasonsAPI.retrofitServiceSeason
 import com.android.carol.sportleagues.data.remote.TeamsAPI.retrofitServiceTeams
-import com.android.carol.sportleagues.data.repositories.LeagueIdRepository
-import com.android.carol.sportleagues.data.repositories.MatchesRepository
-import com.android.carol.sportleagues.data.repositories.SeasonsRepository
-import com.android.carol.sportleagues.data.repositories.TeamsRepository
+import com.android.carol.sportleagues.data.repositories.LeagueRepositoryImpl
+import com.android.carol.sportleagues.data.repositories.MatchesRepositoryImpl
+import com.android.carol.sportleagues.data.repositories.SeasonsRepositoryImpl
+import com.android.carol.sportleagues.data.repositories.TeamsRepositoryImpl
 
 class AppContainer {
 
-    val repositoryLeague = LeagueIdRepository(retrofitServiceLeague)
-    val repositoryMatch = MatchesRepository(retrofitServiceMatch)
-    val repositorySeason = SeasonsRepository(retrofitServiceSeason)
-    val repositoryTeams = TeamsRepository(retrofitServiceTeams)
+    val repositoryLeague = LeagueRepositoryImpl(retrofitServiceLeague)
+    val repositoryMatch = MatchesRepositoryImpl(retrofitServiceMatch)
+    val repositorySeason = SeasonsRepositoryImpl(retrofitServiceSeason)
+    val repositoryTeams = TeamsRepositoryImpl(retrofitServiceTeams)
 
 }

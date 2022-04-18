@@ -2,17 +2,14 @@ package com.android.carol.sportleagues.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.android.carol.sportleagues.R
-import com.android.carol.sportleagues.common.season_id
 import com.android.carol.sportleagues.databinding.ItemViewMatchesBinding
-import com.android.carol.sportleagues.domain.model.MatchesProp
+import com.android.carol.sportleagues.domain.model.Matches
 import com.bumptech.glide.Glide
 
-class MatchesAdapter : ListAdapter<MatchesProp, RecyclerView.ViewHolder>(DiffCallback()) {
+class MatchesAdapter : ListAdapter<Matches, RecyclerView.ViewHolder>(DiffCallback()) {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = getItem(position)
@@ -25,7 +22,7 @@ class MatchesAdapter : ListAdapter<MatchesProp, RecyclerView.ViewHolder>(DiffCal
 
 
     class MyviewHolder private constructor(private val binding : ItemViewMatchesBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(item : MatchesProp){
+        fun bind(item : Matches){
             binding.team1Name.text = item.name_team_home
             binding.team2Name.text = item.name_team_away
             binding.numberGoalsFirstTeam.text = item.home_score.toString()
@@ -53,12 +50,12 @@ class MatchesAdapter : ListAdapter<MatchesProp, RecyclerView.ViewHolder>(DiffCal
         }
     }
 
-    class DiffCallback : DiffUtil.ItemCallback<MatchesProp>(){
-        override fun areItemsTheSame(oldItem: MatchesProp, newItem: MatchesProp): Boolean {
+    class DiffCallback : DiffUtil.ItemCallback<Matches>(){
+        override fun areItemsTheSame(oldItem: Matches, newItem: Matches): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: MatchesProp, newItem: MatchesProp): Boolean {
+        override fun areContentsTheSame(oldItem: Matches, newItem: Matches): Boolean {
             return oldItem.name_team_home == newItem.name_team_home
         }
     }

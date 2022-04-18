@@ -5,13 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.carol.sportleagues.common.season_id
-import com.android.carol.sportleagues.data.remote.dtoMatches.Matches
-import com.android.carol.sportleagues.domain.repositories.DMatchesRepository
+import com.android.carol.sportleagues.data.remote.models.MatchesResponse
+import com.android.carol.sportleagues.domain.model.Matches
+import com.android.carol.sportleagues.domain.repositories.MatchesRepository
 import com.android.carol.sportleagues.domain.use_case.matches.GetMatchUseCase
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class MatchesViewModel(repository: DMatchesRepository) : ViewModel() {
+class MatchesViewModel(repository: MatchesRepository) : ViewModel() {
 
     private val getMatchUseCase = GetMatchUseCase(repository)
 
@@ -24,7 +25,7 @@ class MatchesViewModel(repository: DMatchesRepository) : ViewModel() {
     fun getMatchesProperties(){
         viewModelScope.launch {
             try{
-                _response.value = getMatchUseCase.getProp(season_id)
+                _response.value = getMatchUseCase.getMatchesBySeasonId(season_id)
 
             }catch (e: Exception){
                 smsError.value = "Failure+$e"

@@ -2,7 +2,7 @@ package com.android.carol.sportleagues.data.remote
 
 import com.android.carol.sportleagues.common.Constants.API
 import com.android.carol.sportleagues.common.Constants.URL
-import com.android.carol.sportleagues.data.remote.dtoMatches.Matches
+import com.android.carol.sportleagues.data.remote.models.MatchesResponse
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -26,7 +26,7 @@ interface MatchesAPIService {
     @GET("matches")
     suspend fun getProperties(
         @Query("apikey") key : String = API, @Query("season_id") season_id : Int
-    ): Matches
+    ): MatchesResponse
 }
 
 object MatchesAPI{

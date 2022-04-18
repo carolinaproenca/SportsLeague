@@ -1,35 +1,36 @@
 package com.android.carol.sportleagues.domain.use_case.matches
 
 import com.android.carol.sportleagues.common.season_id
+import com.android.carol.sportleagues.data.remote.dtoMatches.Data
 import com.android.carol.sportleagues.data.remote.dtoMatches.MatchesResp
 import com.android.carol.sportleagues.data.repositories.FakeMatchesRepository
-import com.android.carol.sportleagues.domain.model.MatchesProp
-import junit.framework.Assert
+import com.android.carol.sportleagues.domain.model.Matches
 import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.MatcherAssert
 import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers
 import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.junit.runners.JUnit4
 
-
+@RunWith(JUnit4::class)
 class GetMatchUseCaseTest {
 
     private lateinit var getMatchUseCase: GetMatchUseCase
     private lateinit var fakeMatchesRepository : FakeMatchesRepository
     private lateinit var matches : MatchesResp
+    private val data = mutableListOf<Data>()
 
     @Before
     fun setUp() {
         fakeMatchesRepository = FakeMatchesRepository()
         getMatchUseCase = GetMatchUseCase(fakeMatchesRepository)
 
-        val matchesToInsert = mutableListOf<MatchesProp>()
+        val matchesToInsert = mutableListOf<Matches>()
         for(i in matchesToInsert.indices){
             matchesToInsert.add(
-                MatchesProp(
+                Matches(
                     name_team_home = matchesToInsert[i].name_team_home,
                     name_team_away = matchesToInsert[i].name_team_away,
                     logo_team_home = matchesToInsert[i].logo_team_home,
@@ -48,17 +49,61 @@ class GetMatchUseCaseTest {
 
     @Test
     fun testGetMatchApiFunctional() = runBlocking{
-        val match = getMatchUseCase.getProp(season_id = season_id)
+        val match = getMatchUseCase.getProp(season_id)
         assertEquals(matches.matches.size, match.data.size)
     }
 
     @Test
     fun testGetMatchApiNotFunctional() = runBlocking{
-        val match = getMatchUseCase.getProp(season_id = 1)
+        val match = getMatchUseCase.getProp(seasonId = 1)
         assertThat(match.data.size, `is`(0))
     }
 
-    fun testGetProp() {}
+    @Test
+    fun testGetMatchHomeTeamName() = runBlocking{
+        val match = getMatchUseCase.getMatch(data)
+        for(i in 0..match.size){
+            assertEquals(matches.matches[i].name_team_home, match[i].name_team_home)
+        }
+    }
 
-    fun testGetMatch() {}
+    @Test
+    fun testGetMatchAwayTeamName() = runBlocking{
+        val match = getMatchUseCase.getMatch(data)
+        for(i in 0..match.size){
+            assertEquals(matches.matches[i].name_team_away, match[i].name_team_away)
+        }
+    }
+
+    @Test
+    fun testGetMatchHomeTeamLogo() = runBlocking{
+        val match = getMatchUseCase.getMatch(data)
+        for(i in 0..match.size){
+            assertEquals(matches.matches[i].logo_team_home, match[i].logo_team_home)
+        }
+    }
+
+    @Test
+    fun testGetMatchAwayTeamLogo() = runBlocking{
+        val match = getMatchUseCase.getMatch(data)
+        for(i in 0..match.size){
+            assertEquals(matches.matches[i].logo_team_away, match[i].logo_team_away)
+        }
+    }
+
+    @Test
+    fun testGetMatchHomeTeamScore() = runBlocking{
+        val match = getMatchUseCase.getMatch(data)
+        for(i in 0..match.size){
+            assertEquals(matches.matches[i].home_score, match[i].home_score)
+        }
+    }
+
+    @Test
+    fun testGetMatchAwayTeamScore() = runBlocking{
+        val match = getMatchUseCase.getMatch(data)
+        for(i in 0..match.size){
+            assertEquals(matches.matches[i].away_score, match[i].away_score)
+        }
+    }
 }

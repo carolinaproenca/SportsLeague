@@ -1,7 +1,7 @@
 package com.android.carol.sportleagues.data.remote.dtoSeasons
 
-import com.android.carol.sportleagues.domain.model.SeasonProp
+import com.android.carol.sportleagues.domain.model.Season
 
 data class SeasonsResp (
-    val seasons : List<SeasonProp>
+    val seasons : List<Season>
     )

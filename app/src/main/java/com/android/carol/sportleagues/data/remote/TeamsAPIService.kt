@@ -2,7 +2,7 @@ package com.android.carol.sportleagues.data.remote
 
 import com.android.carol.sportleagues.common.Constants.API
 import com.android.carol.sportleagues.common.Constants.URL
-import com.android.carol.sportleagues.data.remote.dtoTeams.Teams
+import com.android.carol.sportleagues.data.remote.models.TeamsResponse
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -25,7 +25,7 @@ interface TeamsAPIService {
     @GET("teams")
     suspend fun getProperties(
         @Query("apikey") key : String = API, @Query("country_id") country_id :Int
-    ): Teams
+    ): TeamsResponse
 }
 
 object TeamsAPI{
