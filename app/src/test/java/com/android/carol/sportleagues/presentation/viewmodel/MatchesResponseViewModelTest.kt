@@ -24,7 +24,6 @@ class MatchesResponseViewModelTest{
     private lateinit var fakeMatchesRepository: FakeMatchesRepository
     private lateinit var matches : MatchesResp
     //private val data = mutableListOf<Data>()
-    private lateinit var observer : Observer
 
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()

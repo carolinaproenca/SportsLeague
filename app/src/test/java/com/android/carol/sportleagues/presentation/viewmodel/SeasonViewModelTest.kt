@@ -46,7 +46,4 @@ class SeasonViewModelTest{
         seasonViewModel = SeasonViewModel(fakeSeasonsRepository)
     }
 
-    fun testGetResponseSeasons() {}
-
-    fun testGetSeasonProperties() {}
 }

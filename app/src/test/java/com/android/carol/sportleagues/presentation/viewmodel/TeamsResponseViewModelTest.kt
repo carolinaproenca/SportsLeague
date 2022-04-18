@@ -45,8 +45,5 @@ class TeamsResponseViewModelTest{
         teamsViewModel = TeamsViewModel(fakeTeamsRepository)
     }
 
-    fun testGetResponseTeams() {}
-
-    fun testGetTeamsProperties() {}
 
 }

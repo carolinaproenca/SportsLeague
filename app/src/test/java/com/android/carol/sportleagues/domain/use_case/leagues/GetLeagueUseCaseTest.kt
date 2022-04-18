@@ -1,17 +1,11 @@
 package com.android.carol.sportleagues.domain.use_case.leagues
 
-import com.android.carol.sportleagues.common.league_id
+
 import com.android.carol.sportleagues.data.remote.dtoLeagueId.Data
 import com.android.carol.sportleagues.data.repositories.FakeLeagueRepository
 import org.junit.Before
-import org.junit.Test
 import com.android.carol.sportleagues.data.remote.dtoLeagueId.LeagueResp
 import com.android.carol.sportleagues.domain.model.League
-import junit.framework.Assert.assertEquals
-import kotlinx.coroutines.runBlocking
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.`is`
-import org.hamcrest.Matchers.not
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
@@ -21,7 +15,7 @@ class GetLeagueUseCaseTest {
     private lateinit var getLeagueUseCase: GetLeagueUseCase
     private lateinit var fakeLeagueIdRepository: FakeLeagueRepository
     private lateinit var leagues : LeagueResp
-    private val data = mutableListOf<Data>()
+    //private val data = mutableListOf<Data>()
 
 
     @Before
