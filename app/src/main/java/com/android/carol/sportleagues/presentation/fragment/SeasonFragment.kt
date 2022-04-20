@@ -7,11 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.android.carol.sportleagues.AppContainer
 import com.android.carol.sportleagues.SportApplication
-import com.android.carol.sportleagues.data.remote.dtoSeasons.Data
 import com.android.carol.sportleagues.databinding.SeasonFragmentBinding
 import com.android.carol.sportleagues.domain.model.Season
 import com.android.carol.sportleagues.domain.use_case.season.GetSeason
-import com.android.carol.sportleagues.domain.use_case.season.GetSeasonUseCase
 import com.android.carol.sportleagues.presentation.adapters.SeasonAdapter
 import com.android.carol.sportleagues.presentation.viewmodel.SeasonViewModel
 
@@ -49,23 +47,16 @@ class SeasonFragment : Fragment() {
         super.onStart()
        // val season = GetSeasonUseCase(appContainer.repositorySeason)
         var seasons = mutableListOf<Season>()
+        getSeason = InterfaceGetSeason(seasons)
         model.responseSeasonsResponse.observe(this) { item ->
-            name = item.name
-            seasonId = item.seasonId
-            seasons = getSeason.seasons
-            //getSeason(item.data) as MutableList<Season>
-                //season.getSeason(item.data) as MutableList<Season>
+            //name = item.name
+            //seasonId = item.seasonId
+            //seasons = getSeason.seasons
+            seasons = getSeason.getSeason(item.name,item.seasonId) as MutableList<Season>
 
             adapter.submitList(seasons)
         }
     }
 }
 
-class InterfaceGetSeason : GetSeason{
-
-    override val seasons: MutableList<Season>
-        get() = TODO("Not yet implemented")
-    override val arraySeason: ArrayList<Data>
-        get() = TODO("Not yet implemented")
-
-}
+class InterfaceGetSeason(override val seasons: MutableList<Season>) : GetSeason{}

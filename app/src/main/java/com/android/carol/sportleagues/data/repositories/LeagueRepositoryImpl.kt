@@ -4,6 +4,8 @@ import com.android.carol.sportleagues.data.remote.LeagueIdAPIService
 import com.android.carol.sportleagues.data.remote.models.LeagueResponse
 import com.android.carol.sportleagues.domain.model.League
 import com.android.carol.sportleagues.domain.repositories.LeagueRepository
+import com.android.carol.sportleagues.data.Result.Success
+import com.android.carol.sportleagues.data.Result.Error
 
 class LeagueRepositoryImpl constructor(private val leagueIdAPIService: LeagueIdAPIService) : LeagueRepository {
 
@@ -14,6 +16,17 @@ class LeagueRepositoryImpl constructor(private val leagueIdAPIService: LeagueIdA
 
     override suspend fun getLeagueById(id : Int): League {
         return leagueIdAPIService.getProperties(subscribed = true).toDomainModel(id)
+    }
+
+    override suspend fun getLeagueId(id : Int) : Boolean {
+        return try {
+            val request = leagueIdAPIService.getProperties(subscribed = true).toDomainModel(id)
+            Success(request)
+            true
+        }catch (e: Exception){
+            Error(e)
+            false
+        }
     }
 
 }

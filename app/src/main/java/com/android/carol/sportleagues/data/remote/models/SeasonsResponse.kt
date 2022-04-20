@@ -1,6 +1,5 @@
 package com.android.carol.sportleagues.data.remote.models
 
-
 import com.android.carol.sportleagues.data.remote.dtoSeasons.Data
 import com.android.carol.sportleagues.data.remote.dtoSeasons.Query
 import com.squareup.moshi.Json

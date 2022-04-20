@@ -7,20 +7,21 @@ import com.android.carol.sportleagues.domain.model.League
 import com.android.carol.sportleagues.domain.use_case.leagues.GetLeagueUseCase
 import com.android.carol.sportleagues.getOrAwaitValue
 import junit.framework.Assert.assertEquals
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-
-class StartViewModelTest{
+@ExperimentalCoroutinesApi
+class StartViewResponseModelTest{
 
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
 
+    @ExperimentalCoroutinesApi
     @get:Rule
-    val coroutineRule = MainCoroutineRule()
+    val coroutineRule = MainCoroutineScopeRule()
 
     private lateinit var startViewModel : StartViewModel
     private lateinit var fakeLeagueIdRepository: FakeLeagueRepository
@@ -51,11 +52,12 @@ class StartViewModelTest{
     }
 
     @Test
-    fun `Test the league with repository and ViewModel updates the livedata correctly`() = runTest{
-        val fakeLeague = League(98,10, "Portugal")
+    fun `Test league with repository and ViewModel updates the livedata correctly`() = runTest{
+        val fakeLeague = League(123,456, "League1")
         fakeLeagueIdRepository.league = fakeLeague //setUp test
         startViewModel.getLeagueProperties()
         val result = startViewModel.response.getOrAwaitValue()
         assertEquals(result,fakeLeague)
     }
+
 }

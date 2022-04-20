@@ -1,6 +1,5 @@
 package com.android.carol.sportleagues.domain.use_case.season
 
-import com.android.carol.sportleagues.data.remote.dtoSeasons.Data
 import com.android.carol.sportleagues.domain.model.Season
 import com.android.carol.sportleagues.domain.repositories.SeasonsRepository
 
@@ -12,6 +11,15 @@ class GetSeasonUseCase constructor(private val repository: SeasonsRepository) {
 
 interface GetSeason{
     val seasons: MutableList<Season>
+
+    fun getSeason(name : String, seasonId : Int) : List<Season>{
+        seasons.add(Season(name, seasonId))
+        return seasons
+    }
+}
+
+/*interface GetSeason{
+    val seasons: MutableList<Season>
     val arraySeason: ArrayList<Data>
 
     fun getSeason(season : List<Data>) : List<Season>{
@@ -21,4 +29,4 @@ interface GetSeason{
         }
         return seasons
     }
-}
+}*/

@@ -5,16 +5,23 @@ import com.android.carol.sportleagues.data.remote.dtoSeasons.SeasonsResp
 import com.android.carol.sportleagues.data.repositories.FakeSeasonsRepository
 import com.android.carol.sportleagues.domain.model.Season
 import com.android.carol.sportleagues.domain.use_case.season.GetSeasonUseCase
+import com.android.carol.sportleagues.getOrAwaitValue
+import junit.framework.Assert.assertEquals
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Rule
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
+import org.junit.Test
 
-@RunWith(JUnit4::class)
-class SeasonViewModelTest{
+@ExperimentalCoroutinesApi
+class SeasonResponseViewModelTest{
 
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
+
+    @ExperimentalCoroutinesApi
+    @get:Rule
+    val coroutineRule = MainCoroutineScopeRule()
 
 
     private lateinit var seasonViewModel : SeasonViewModel
@@ -44,6 +51,15 @@ class SeasonViewModelTest{
         fakeSeasonsRepository.insertSeasons(seasonResp)
 
         seasonViewModel = SeasonViewModel(fakeSeasonsRepository)
+    }
+
+    @Test
+    fun `Test season with repository and ViewModel updates the livedata correctly`() = runTest{
+        val fakeSeason = Season("123", 2)
+        fakeSeasonsRepository.seasons = fakeSeason
+        seasonViewModel.getSeasonProperties()
+        val result = seasonViewModel.responseSeasonsResponse.getOrAwaitValue()
+        assertEquals(result,fakeSeason)
     }
 
 }

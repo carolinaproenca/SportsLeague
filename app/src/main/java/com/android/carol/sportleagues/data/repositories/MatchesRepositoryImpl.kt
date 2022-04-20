@@ -1,5 +1,7 @@
 package com.android.carol.sportleagues.data.repositories
 
+import com.android.carol.sportleagues.data.Result.Success
+import com.android.carol.sportleagues.data.Result.Error
 import com.android.carol.sportleagues.data.remote.MatchesAPIService
 import com.android.carol.sportleagues.data.remote.models.MatchesResponse
 import com.android.carol.sportleagues.domain.model.Matches
@@ -15,5 +17,15 @@ class MatchesRepositoryImpl constructor(private val matchesAPIService: MatchesAP
 
     override suspend fun getMatchesBySeasonId(seasonId: Int): Matches {
         return matchesAPIService.getProperties(season_id = seasonId).toDomainModel(seasonId)
+    }
+    override suspend fun getMatchesSeasonId(id : Int) : Boolean{
+        return try {
+            val request = matchesAPIService.getProperties(season_id = id).toDomainModel(id)
+            Success(request)
+            true
+        }catch (e: Exception){
+            Error(e)
+            false
+        }
     }
 }

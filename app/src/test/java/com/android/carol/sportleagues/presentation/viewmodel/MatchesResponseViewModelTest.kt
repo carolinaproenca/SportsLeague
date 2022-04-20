@@ -7,17 +7,22 @@ import com.android.carol.sportleagues.domain.model.Matches
 import com.android.carol.sportleagues.domain.use_case.matches.GetMatchUseCase
 import com.android.carol.sportleagues.getOrAwaitValue
 import junit.framework.Assert.assertEquals
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
-import java.util.*
 
-@RunWith(JUnit4::class)
+
+@ExperimentalCoroutinesApi
 class MatchesResponseViewModelTest{
+
+    @get:Rule
+    var instantExecutorRule = InstantTaskExecutorRule()
+
+    @ExperimentalCoroutinesApi
+    @get:Rule
+    val coroutineRule = MainCoroutineScopeRule()
 
     private lateinit var matchesViewModel: MatchesViewModel
     private lateinit var getMatchUseCase: GetMatchUseCase
@@ -25,13 +30,10 @@ class MatchesResponseViewModelTest{
     private lateinit var matches : MatchesResp
     //private val data = mutableListOf<Data>()
 
-    @get:Rule
-    var instantExecutorRule = InstantTaskExecutorRule()
 
     @Before
     fun setup(){
         fakeMatchesRepository = FakeMatchesRepository()
-
         getMatchUseCase = GetMatchUseCase(fakeMatchesRepository)
 
         val matchesToInsert = mutableListOf<Matches>()
@@ -56,17 +58,14 @@ class MatchesResponseViewModelTest{
         matchesViewModel = MatchesViewModel(fakeMatchesRepository)
     }
 
+
     @Test
-    fun testGetResponse() {
-       // setOf(matchesViewModel.response)
-        val value = matchesViewModel.response.getOrAwaitValue()
-        //assertEquals(matches.matches.size, value.data.size)
-       // assertThat(value, not(nullValue()))
-
-      // val value = matchesViewModel.getMatchesProperties()
-        assertEquals(matchesViewModel.response.value, value)
-        assertThat(matchesViewModel.response.getOrAwaitValue(), `is`(true))
+    fun `Test match with repository and ViewModel updates the livedata correctly`() = runTest{
+        val fakeMatch = Matches("Benfica", "Cadima", "123", "456", 5,1)
+        fakeMatchesRepository.matches = fakeMatch
+        matchesViewModel.getMatchesProperties()
+        val result = matchesViewModel.response.getOrAwaitValue()
+        assertEquals(result,fakeMatch)
     }
-
 
 }

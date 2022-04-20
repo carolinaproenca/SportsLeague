@@ -1,6 +1,5 @@
 package com.android.carol.sportleagues.domain.use_case.matches
 
-import com.android.carol.sportleagues.data.remote.dtoMatches.Data
 import com.android.carol.sportleagues.domain.model.Matches
 import com.android.carol.sportleagues.domain.repositories.MatchesRepository
 
@@ -9,6 +8,17 @@ class GetMatchUseCase constructor(private val repository: MatchesRepository){
     suspend fun getMatchesBySeasonId(seasonId : Int) = repository.getMatchesBySeasonId(seasonId)
 }
 
+interface GetMatches{
+    val matches: MutableList<Matches>
+    fun getMatch(homeTeam_name: String,awayTeam_name: String,homeTeam_logo: String,awayTeam_logo: String,
+                 stats_homeScore : Int, stats_awayScore : Int) : List<Matches>{
+        matches.add(Matches(homeTeam_name,awayTeam_name, homeTeam_logo,
+                awayTeam_logo, stats_homeScore, stats_awayScore))
+        return matches
+    }
+}
+
+/*
 interface GetMatches{
     val matches: MutableList<Matches>
     val arrayMatches: ArrayList<Data>
@@ -22,4 +32,4 @@ interface GetMatches{
         }
         return matches
     }
-}
+}*/

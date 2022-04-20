@@ -1,10 +1,5 @@
 package com.android.carol.sportleagues.domain.use_case.teams
 
-import com.android.carol.sportleagues.common.Constants.API
-import com.android.carol.sportleagues.common.country_id
-import com.android.carol.sportleagues.data.remote.dtoTeams.Data
-import com.android.carol.sportleagues.data.remote.dtoTeams.Query
-import com.android.carol.sportleagues.data.remote.models.TeamsResponse
 import com.android.carol.sportleagues.domain.model.Teams
 import com.android.carol.sportleagues.domain.repositories.TeamsRepository
 

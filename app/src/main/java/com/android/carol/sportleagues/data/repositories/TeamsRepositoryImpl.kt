@@ -1,5 +1,7 @@
 package com.android.carol.sportleagues.data.repositories
 
+import com.android.carol.sportleagues.data.Result.Success
+import com.android.carol.sportleagues.data.Result.Error
 import com.android.carol.sportleagues.data.remote.TeamsAPIService
 import com.android.carol.sportleagues.data.remote.models.TeamsResponse
 import com.android.carol.sportleagues.domain.model.Teams
@@ -16,4 +18,14 @@ class TeamsRepositoryImpl constructor(private val teamsAPIService: TeamsAPIServi
         return teamsAPIService.getProperties(country_id = countryId).toDomainModel(countryId)
     }
 
+    override suspend fun getTeamsCountryId(id : Int) : Boolean{
+        return try {
+            val request = teamsAPIService.getProperties(country_id = id).toDomainModel(id)
+            Success(request)
+            true
+        }catch (e: Exception){
+            Error(e)
+            false
+        }
+    }
 }

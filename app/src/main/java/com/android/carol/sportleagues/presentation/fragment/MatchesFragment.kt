@@ -9,7 +9,6 @@ import com.android.carol.sportleagues.AppContainer
 import com.android.carol.sportleagues.SportApplication
 import com.android.carol.sportleagues.databinding.MatchesFragmentBinding
 import com.android.carol.sportleagues.domain.model.Matches
-import com.android.carol.sportleagues.domain.use_case.matches.GetMatchUseCase
 import com.android.carol.sportleagues.presentation.adapters.MatchesAdapter
 import com.android.carol.sportleagues.presentation.viewmodel.MatchesViewModel
 import com.android.carol.sportleagues.domain.use_case.matches.GetMatches as GetMatches
@@ -46,13 +45,15 @@ class MatchesFragment : Fragment() {
         super.onStart()
         //val match = GetMatchUseCase(appContainer.repositoryMatch)
         var matches = mutableListOf<Matches>()
-        model.response.observe(this){//item ->
-            matches = getMatches.matches
-            //getMatch(item.data) as MutableList<Matches>
-               // match.getMatch(item.data) as MutableList<Matches>
-           // matches = getMatches.matches
+        getMatches = InterfaceGetMatches(matches)
+        model.response.observe(this){item ->
+            //matches = getMatches.matches
+            matches = getMatches.getMatch(item.name_team_home,item.name_team_away,
+                item.logo_team_home, item.logo_team_away, item.home_score, item.away_score) as MutableList<Matches>
             adapter.submitList(matches)
         }
     }
 
 }
+
+class InterfaceGetMatches(override val matches: MutableList<Matches>) : GetMatches{}

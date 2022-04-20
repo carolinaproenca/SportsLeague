@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.carol.sportleagues.common.season_id
-import com.android.carol.sportleagues.data.remote.models.MatchesResponse
 import com.android.carol.sportleagues.domain.model.Matches
 import com.android.carol.sportleagues.domain.repositories.MatchesRepository
 import com.android.carol.sportleagues.domain.use_case.matches.GetMatchUseCase
