@@ -9,7 +9,6 @@ import com.android.carol.sportleagues.AppContainer
 import com.android.carol.sportleagues.SportApplication
 import com.android.carol.sportleagues.databinding.SeasonFragmentBinding
 import com.android.carol.sportleagues.domain.model.Season
-import com.android.carol.sportleagues.domain.use_case.season.GetSeason
 import com.android.carol.sportleagues.presentation.adapters.SeasonAdapter
 import com.android.carol.sportleagues.presentation.viewmodel.SeasonViewModel
 
@@ -18,8 +17,6 @@ class SeasonFragment : Fragment() {
     private lateinit var binding : SeasonFragmentBinding
     private lateinit var model : SeasonViewModel
     private val adapter by lazy{ SeasonAdapter() }
-    private lateinit var getSeason: GetSeason
-
     var name : String = "test"
     var seasonId : Int = 0
 
@@ -45,18 +42,12 @@ class SeasonFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-       // val season = GetSeasonUseCase(appContainer.repositorySeason)
         var seasons = mutableListOf<Season>()
-        getSeason = InterfaceGetSeason(seasons)
-        model.responseSeasonsResponse.observe(this) { item ->
-            //name = item.name
-            //seasonId = item.seasonId
-            //seasons = getSeason.seasons
-            seasons = getSeason.getSeason(item.name,item.seasonId) as MutableList<Season>
 
+        model.responseSeasonsResponse.observe(this) { item ->
+            seasons = appContainer.repositorySeason.getSeason() as MutableList<Season>
             adapter.submitList(seasons)
         }
     }
-}
 
-class InterfaceGetSeason(override val seasons: MutableList<Season>) : GetSeason{}
+}

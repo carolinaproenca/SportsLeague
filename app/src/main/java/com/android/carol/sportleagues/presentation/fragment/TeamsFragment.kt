@@ -9,11 +9,8 @@ import androidx.navigation.fragment.findNavController
 import com.android.carol.sportleagues.AppContainer
 import com.android.carol.sportleagues.R
 import com.android.carol.sportleagues.SportApplication
-import com.android.carol.sportleagues.data.remote.dtoTeams.Data
-import com.android.carol.sportleagues.data.remote.dtoTeams.TeamsResp
 import com.android.carol.sportleagues.databinding.TeamsFragmentBinding
 import com.android.carol.sportleagues.domain.model.Teams
-import com.android.carol.sportleagues.domain.use_case.teams.GetTeams
 import com.android.carol.sportleagues.presentation.adapters.TeamsAdapter
 import com.android.carol.sportleagues.presentation.viewmodel.TeamsViewModel
 
@@ -23,12 +20,6 @@ class TeamsFragment : Fragment() {
     private val adapter by lazy{ TeamsAdapter() }
 
     private lateinit var appContainer: AppContainer
-   // private lateinit var getTeams: InterfaceGetTeams
-    private lateinit var getTeams: GetTeams
-    private var data: List<Data> = listOf()
-
-    private lateinit var tea : TeamsResp
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,23 +44,10 @@ class TeamsFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        //val team = GetTeamsUseCase(appContainer.repositoryTeams)
-        //val data = mutableListOf<Data>()
         var teams = mutableListOf<Teams>()
-        getTeams = InterfaceGetTeams(teams)
-       // for(i in data.indices) {
             model.responseTeamsResponse.observe(this) { item ->
-                tea = TeamsResp(teams)
-
-                teams = getTeams.getTeam(item.logo, item.name) as MutableList<Teams>
-
-                tea = TeamsResp(teams)
-
+                teams = appContainer.repositoryTeams.getTeam() as MutableList<Teams>
                 adapter.submitList(teams)
-
             }
-       // }
     }
 }
-
-class InterfaceGetTeams(override val teams: MutableList<Teams>) : GetTeams {}

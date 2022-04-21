@@ -1,6 +1,7 @@
 package com.android.carol.sportleagues.data.repositories
 
-import com.android.carol.sportleagues.data.Result
+import com.android.carol.sportleagues.data.Result.Success
+import com.android.carol.sportleagues.data.Result.Error
 import com.android.carol.sportleagues.data.remote.dtoMatches.MatchesResp
 import com.android.carol.sportleagues.domain.repositories.MatchesRepository
 import com.android.carol.sportleagues.domain.model.Matches
@@ -10,10 +11,12 @@ class FakeMatchesRepository : MatchesRepository {
 
     lateinit var matches: Matches
     private val match = mutableListOf<MatchesResp>()
-    private var shouldReturnError = false
+    private val matchesList = mutableListOf<Matches>()
 
-    fun setReturnError(value : Boolean){
-        shouldReturnError = value
+    private var shouldReturnSuccess = false
+
+    fun setReturnSuccess(value : Boolean){
+        shouldReturnSuccess = value
     }
 
     override suspend fun getMatchesBySeasonId(seasonId: Int): Matches {
@@ -23,13 +26,17 @@ class FakeMatchesRepository : MatchesRepository {
 
     override suspend fun getMatchesSeasonId(id : Int) : Boolean{
         matches = Matches("Home","Away","123","456",3,2)
-        return if(shouldReturnError){
-            Result.Success(id)
+        return if(shouldReturnSuccess){
+            Success(id)
             true
         }else {
-            Result.Error(Exception("Matches Test Exception"))
+            Error(Exception("Matches Test Exception"))
             false
         }
+    }
+
+    override fun getMatch(): List<Matches> {
+        return matchesList
     }
 
     fun insertMatches(matchesResp: MatchesResp){

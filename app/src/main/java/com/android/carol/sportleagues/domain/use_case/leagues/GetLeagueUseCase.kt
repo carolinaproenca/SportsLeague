@@ -1,8 +1,5 @@
 package com.android.carol.sportleagues.domain.use_case.leagues
 
-
-import com.android.carol.sportleagues.domain.model.League
-
 import com.android.carol.sportleagues.domain.repositories.LeagueRepository
 
 class GetLeagueUseCase constructor(private val repository: LeagueRepository){
@@ -11,13 +8,13 @@ class GetLeagueUseCase constructor(private val repository: LeagueRepository){
 
 }
 
-interface GetLeague {
+/*interface GetLeague {
     val leagues: MutableList<League>
     fun getLeague(leagueId: Int, countryId: Int, name: String): List<League> {
         leagues.add(League(leagueId, countryId, name))
         return leagues
     }
-}
+}*/
 /*interface GetLeague{
 
     val leagues: MutableList<League>

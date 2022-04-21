@@ -20,7 +20,6 @@ class GetSeasonUseCaseTest {
 
     private lateinit var getSeasonUseCase: GetSeasonUseCase
     private lateinit var fakeSeasonsRepository: FakeSeasonsRepository
-    private lateinit var getSeason: GetSeason
     private lateinit var seasonResp : SeasonsResp
     private val seasonsToInsert = mutableListOf<Season>()
 
@@ -47,7 +46,7 @@ class GetSeasonUseCaseTest {
 
     @Test
     fun `If request to network work correctly is Success`() = runTest{
-        fakeSeasonsRepository.setReturnError(true)
+        fakeSeasonsRepository.setReturnSuccess(true)
         //request success from repository
         val request = fakeSeasonsRepository.getSeasonId(1)
 
@@ -61,39 +60,11 @@ class GetSeasonUseCaseTest {
         assertThat(request, IsEqual(season))
     }
 
-    @Test
+/*    @Test
     fun `Test Season with interface`() = runTest{
         getSeason = InterfaceGetSeason(seasonsToInsert)
         val seasonInterface = getSeason.seasons
         assertEquals(seasonInterface, seasonsToInsert)
-    }
+    }*/
 
 }
-
-class InterfaceGetSeason(override val seasons: MutableList<Season>) : GetSeason{}
-
-/*
-interface GetSeasonTest{
-
-    var fakeSeasonsRepository: FakeSeasonsRepository
-    var seasonResp : SeasonsResp
-
-    @Before
-    fun setup(){
-        fakeSeasonsRepository = FakeSeasonsRepository()
-        val seasonsToInsert = mutableListOf<Season>()
-        for(i in seasonsToInsert.indices){
-            seasonsToInsert.add(
-                Season(
-                    name = seasonsToInsert[i].name,
-                    seasonId = seasonsToInsert[i].seasonId
-                )
-            )
-        }
-
-        seasonsToInsert.shuffle()
-
-        seasonResp = SeasonsResp(seasonsToInsert)
-        fakeSeasonsRepository.insertSeasons(seasonResp)
-    }
-}*/

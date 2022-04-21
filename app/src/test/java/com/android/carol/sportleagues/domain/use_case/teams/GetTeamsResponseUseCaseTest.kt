@@ -7,6 +7,7 @@ import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.hamcrest.CoreMatchers
+import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.IsEqual
 import org.junit.Before
@@ -20,7 +21,6 @@ class GetTeamsResponseUseCaseTest {
 
     private lateinit var getTeamsUseCase: GetTeamsUseCase
     private lateinit var fakeTeamsRepository: FakeTeamsRepository
-    private lateinit var getTeams: GetTeams
     private lateinit var teamsResp : TeamsResp
     private val teamsToInsert = mutableListOf<Teams>()
 
@@ -46,11 +46,11 @@ class GetTeamsResponseUseCaseTest {
 
     @Test
     fun `If request to network work correctly is Success`() = runTest{
-        fakeTeamsRepository.setReturnError(true)
+        fakeTeamsRepository.setReturnSuccess(true)
         //request success from repository
         val request = fakeTeamsRepository.getTeamsCountryId(1)
 
-        assertThat(request, CoreMatchers.`is`(true))
+        assertThat(request, `is`(true))
     }
 
     @Test
@@ -61,37 +61,11 @@ class GetTeamsResponseUseCaseTest {
         assertThat(request, IsEqual(team))
     }
 
-    @Test
+/*    @Test
     fun `Test Teams with interface`() = runTest{
         getTeams = InterfaceGetTeams(teamsToInsert)
         val teamsInterface = getTeams.teams
         assertEquals(teamsInterface, teamsToInsert)
-    }
+    }*/
+
 }
-
-class InterfaceGetTeams(override val teams: MutableList<Teams>) : GetTeams {}
-
-/*
-interface GetTeamsTest{
-    var fakeTeamsRepository: FakeTeamsRepository
-    var teamsResp : TeamsResp
-
-    @Before
-    fun setup(){
-        fakeTeamsRepository = FakeTeamsRepository()
-
-        val teamsToInsert = mutableListOf<Teams>()
-        for(i in teamsToInsert.indices){
-            teamsToInsert.add(
-                Teams(
-                    logo = teamsToInsert[i].logo,
-                    name = teamsToInsert[i].name
-                )
-            )
-        }
-        teamsToInsert.shuffle()
-        teamsResp = TeamsResp(teamsToInsert)
-        fakeTeamsRepository.insertTeam(teamsResp)
-    }
-
-}*/

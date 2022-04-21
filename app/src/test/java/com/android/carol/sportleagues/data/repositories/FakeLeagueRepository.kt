@@ -3,6 +3,7 @@ package com.android.carol.sportleagues.data.repositories
 import com.android.carol.sportleagues.data.remote.dtoLeagueId.LeagueResp
 import com.android.carol.sportleagues.data.Result.Success
 import com.android.carol.sportleagues.data.Result.Error
+import com.android.carol.sportleagues.data.remote.dtoLeagueId.Data
 import com.android.carol.sportleagues.domain.model.League
 import com.android.carol.sportleagues.domain.repositories.LeagueRepository
 import java.lang.Exception
@@ -11,11 +12,12 @@ class FakeLeagueRepository : LeagueRepository {
 
     lateinit var league : League
     private val leagues = mutableListOf<LeagueResp>()
+    private val leaguesList = mutableListOf<League>()
 
-    private var shouldReturnError = false
+    private var shouldReturnSuccess = false
 
-    fun setReturnError(value : Boolean){
-        shouldReturnError = value
+    fun setReturnSuccess(value : Boolean){
+        shouldReturnSuccess = value
     }
 
     override suspend fun getLeagueById(id : Int): League {
@@ -25,13 +27,17 @@ class FakeLeagueRepository : LeagueRepository {
 
     override suspend fun getLeagueId(id : Int) : Boolean{
         league = League(123,345,"League")
-        return if(shouldReturnError){
+        return if(shouldReturnSuccess){
             Success(id)
             true
         }else {
             Error(Exception("League Test Exception"))
             false
         }
+    }
+
+    override fun getLeague(): List<League> {
+        return leaguesList
     }
 
     fun insertLeagues(league: LeagueResp){

@@ -6,11 +6,16 @@ import com.android.carol.sportleagues.domain.model.League
 import com.android.carol.sportleagues.domain.repositories.LeagueRepository
 import com.android.carol.sportleagues.data.Result.Success
 import com.android.carol.sportleagues.data.Result.Error
+import com.android.carol.sportleagues.data.remote.dtoLeagueId.Data
 
 class LeagueRepositoryImpl constructor(private val leagueIdAPIService: LeagueIdAPIService) : LeagueRepository {
 
+    private lateinit var leagueResponse : Data
+    private lateinit var leaResponse : List<Data>
+
     private fun LeagueResponse.toDomainModel(id: Int) : League {
-        val leagueResponse = this.data.first { it.leagueId == id }
+        leagueResponse = this.data.first { it.leagueId == id }
+        leaResponse = this.data
         return League(leagueResponse.leagueId, leagueResponse.countryId, leagueResponse.name)
     }
 
@@ -27,6 +32,14 @@ class LeagueRepositoryImpl constructor(private val leagueIdAPIService: LeagueIdA
             Error(e)
             false
         }
+    }
+
+    override fun getLeague(): List<League> {
+        val leagues = mutableListOf<League>()
+        for(i in leaResponse.indices){
+            leagues.add(League(leaResponse[i].leagueId, leaResponse[i].countryId, leaResponse[i].name))
+        }
+        return leagues
     }
 
 }

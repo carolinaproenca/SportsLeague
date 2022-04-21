@@ -9,7 +9,3 @@ var country_id : Int = 0
 var league_id : Int = 490
 var season_id : Int = 0
 
-
-
-
-

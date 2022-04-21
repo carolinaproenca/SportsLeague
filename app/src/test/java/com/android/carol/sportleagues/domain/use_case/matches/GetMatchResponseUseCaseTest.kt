@@ -20,7 +20,6 @@ class GetMatchUseCaseTest {
 
     private lateinit var getMatchUseCase: GetMatchUseCase
     private lateinit var fakeMatchesRepository : FakeMatchesRepository
-    private lateinit var getMatches: GetMatches
     private lateinit var matches : MatchesResp
     private val matchesToInsert = mutableListOf<Matches>()
 
@@ -50,7 +49,7 @@ class GetMatchUseCaseTest {
 
     @Test
     fun `If request to network work correctly is Success`() = runTest{
-        fakeMatchesRepository.setReturnError(true)
+        fakeMatchesRepository.setReturnSuccess(true)
         //request success from repository
         val request = fakeMatchesRepository.getMatchesSeasonId(1)
         assertThat(request, `is`(true))
@@ -62,6 +61,7 @@ class GetMatchUseCaseTest {
         val request = fakeMatchesRepository.getMatchesBySeasonId(1)
         assertThat(request, IsEqual(matches))
     }
+/*
 
     @Test
     fun `Test Matches with interface`() = runTest{
@@ -69,38 +69,6 @@ class GetMatchUseCaseTest {
         val matchInterface = getMatches.matches
         assertEquals(matchInterface, matchesToInsert)
     }
+*/
 
 }
-
-class InterfaceGetMatches(override val matches: MutableList<Matches>) : GetMatches{}
-
-/*
-interface GetMatchesTest{
-
-    var fakeMatchesRepository : FakeMatchesRepository
-    var matches : MatchesResp
-
-    @Before
-    fun setUp() {
-        fakeMatchesRepository = FakeMatchesRepository()
-
-        val matchesToInsert = mutableListOf<Matches>()
-        for(i in matchesToInsert.indices){
-            matchesToInsert.add(
-                Matches(
-                    name_team_home = matchesToInsert[i].name_team_home,
-                    name_team_away = matchesToInsert[i].name_team_away,
-                    logo_team_home = matchesToInsert[i].logo_team_home,
-                    logo_team_away = matchesToInsert[i].logo_team_away,
-                    home_score = matchesToInsert[i].home_score,
-                    away_score = matchesToInsert[i].away_score
-                )
-            )
-        }
-
-        matchesToInsert.shuffle()
-
-        matches = MatchesResp(matchesToInsert)
-        fakeMatchesRepository.insertMatches(matches)
-    }
-}*/

@@ -11,7 +11,7 @@ import com.android.carol.sportleagues.common.country_id
 import com.android.carol.sportleagues.common.league_id
 import com.android.carol.sportleagues.databinding.StartFragmentBinding
 import com.android.carol.sportleagues.domain.model.League
-import com.android.carol.sportleagues.domain.use_case.leagues.GetLeague
+
 import com.android.carol.sportleagues.presentation.viewmodel.StartViewModel
 
 class StartFragment : Fragment() {
@@ -20,7 +20,9 @@ class StartFragment : Fragment() {
     private lateinit var model : StartViewModel
 
     private lateinit var appContainer: AppContainer
-    private lateinit var getLeague : GetLeague
+
+    private var countryId : Int = 0
+    private var leagueId : Int = 0
 
 
     override fun onCreateView(
@@ -38,10 +40,14 @@ class StartFragment : Fragment() {
         model.getLeagueProperties()
 
         binding.buttonPrimeiraliga.setOnClickListener {
+            country_id = countryId
+            league_id = leagueId
             this.findNavController().navigate(R.id.action_startFragment_to_teamsFragment)
         }
 
         binding.buttonLaliga.setOnClickListener {
+            country_id = countryId
+            league_id = leagueId
             this.findNavController().navigate(R.id.action_startFragment_to_teamsFragment)
         }
         return binding.root
@@ -49,17 +55,12 @@ class StartFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        //val league = GetLeagueUseCase(appContainer.repositoryLeague)
         var leagues = mutableListOf<League>()
-        getLeague = InterfaceGetLeague(leagues)
+
         model.response.observe(this){ item ->
-            leagues = getLeague.getLeague(item.leagueid, item.countryid, item.name) as MutableList<League>
-            country_id = item.countryid
-            league_id  = item.leagueid
+            leagues = appContainer.repositoryLeague.getLeague() as MutableList<League>
+            countryId = item.countryid
+             leagueId = item.leagueid
         }
     }
-}
-
-class InterfaceGetLeague(override val leagues: MutableList<League>) : GetLeague{
-
 }

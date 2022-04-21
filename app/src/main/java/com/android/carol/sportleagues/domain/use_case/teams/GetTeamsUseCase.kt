@@ -1,6 +1,5 @@
 package com.android.carol.sportleagues.domain.use_case.teams
 
-import com.android.carol.sportleagues.domain.model.Teams
 import com.android.carol.sportleagues.domain.repositories.TeamsRepository
 
 class GetTeamsUseCase constructor(private val repository: TeamsRepository) {
@@ -9,6 +8,7 @@ class GetTeamsUseCase constructor(private val repository: TeamsRepository) {
 
 }
 
+/*
 interface GetTeams{
     val teams: MutableList<Teams>
     fun getTeam(logo : String, name : String) : List<Teams>{
@@ -16,6 +16,7 @@ interface GetTeams{
         return teams
     }
 }
+*/
 
 /*interface GetTeams{
     val teams: MutableList<Teams>
