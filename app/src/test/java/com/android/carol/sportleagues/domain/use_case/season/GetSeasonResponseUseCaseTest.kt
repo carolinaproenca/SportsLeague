@@ -60,11 +60,10 @@ class GetSeasonUseCaseTest {
         assertThat(request, IsEqual(season))
     }
 
-/*    @Test
-    fun `Test Season with interface`() = runTest{
-        getSeason = InterfaceGetSeason(seasonsToInsert)
-        val seasonInterface = getSeason.seasons
+    @Test
+    fun `Test Season with getSeason repository`() = runTest{
+        val seasonInterface =fakeSeasonsRepository.getSeason()
         assertEquals(seasonInterface, seasonsToInsert)
-    }*/
+    }
 
 }

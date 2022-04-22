@@ -22,10 +22,8 @@ import org.junit.runners.JUnit4
 class GetLeagueUseCaseTest {
 
     private lateinit var getLeagueUseCase: GetLeagueUseCase
-    private lateinit var realRepository : LeagueRepositoryImpl
     private lateinit var fakeLeagueIdRepository: FakeLeagueRepository
     private lateinit var leagues : LeagueResp
-    private lateinit var leagueIdApi : LeagueIdApi
 
     private val leaguesToInsert = mutableListOf<League>()
 
@@ -70,16 +68,7 @@ class GetLeagueUseCaseTest {
 
     @Test
     fun `Test leagues with repository getLeague`() = runTest{
-    /*    val fakeLeagues = mutableListOf<League>()
-        fakeLeagues.add(League(1,2,"League"))
-
-        leaguesToInsert.add(League(1,2,"League"))
-
-        getLeague = InterfaceGetLeague(leaguesToInsert)*/
-
-        realRepository = LeagueRepositoryImpl(leagueIdApi.retrofitServiceLeague)
-
-        val listLeagueRepository = realRepository.getLeague()
+        val listLeagueRepository = fakeLeagueIdRepository.getLeague()
         assertEquals(listLeagueRepository, leaguesToInsert)
     }
 

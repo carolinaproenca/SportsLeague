@@ -61,11 +61,10 @@ class GetTeamsResponseUseCaseTest {
         assertThat(request, IsEqual(team))
     }
 
-/*    @Test
-    fun `Test Teams with interface`() = runTest{
-        getTeams = InterfaceGetTeams(teamsToInsert)
-        val teamsInterface = getTeams.teams
+    @Test
+    fun `Test Teams with getTeam repository`() = runTest{
+        val teamsInterface = fakeTeamsRepository.getTeam()
         assertEquals(teamsInterface, teamsToInsert)
-    }*/
+    }
 
 }

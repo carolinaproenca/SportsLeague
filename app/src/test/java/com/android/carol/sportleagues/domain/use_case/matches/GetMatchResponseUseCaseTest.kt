@@ -61,14 +61,13 @@ class GetMatchUseCaseTest {
         val request = fakeMatchesRepository.getMatchesBySeasonId(1)
         assertThat(request, IsEqual(matches))
     }
-/*
+
 
     @Test
-    fun `Test Matches with interface`() = runTest{
-        getMatches = InterfaceGetMatches(matchesToInsert)
-        val matchInterface = getMatches.matches
+    fun `Test Matches with getMatch`() = runTest{
+        val matchInterface = fakeMatchesRepository.getMatch()
         assertEquals(matchInterface, matchesToInsert)
     }
-*/
+
 
 }
